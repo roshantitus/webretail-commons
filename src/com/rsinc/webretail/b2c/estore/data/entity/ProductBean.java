@@ -91,7 +91,7 @@ public class ProductBean  extends BaseBean {
 	}
 
 	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="CATEGORY_ID", unique=true, nullable=false, updatable=true)		
+    @JoinColumn(name="category_id", unique=true, nullable=false, updatable=true)		
 	public CategoryBean getCategory() {
 		return category;
 	}
