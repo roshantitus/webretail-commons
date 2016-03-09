@@ -13,7 +13,7 @@ import com.rsinc.webretail.b2c.estore.common.exception.application.ApplicationEx
 import com.rsinc.webretail.b2c.estore.common.exception.system.SystemException;
 import com.rsinc.webretail.b2c.estore.common.logging.Logger;
 import com.rsinc.webretail.b2c.estore.common.logging.LoggerFactory;
-import com.rsinc.webretail.b2c.estore.common.util.Constants;
+import com.rsinc.webretail.b2c.estore.common.util.CommonConstants;
 
 /**
  * @author Roshan Titus
@@ -33,7 +33,7 @@ public class BaseController {
       ModelAndView mav = new ModelAndView();
       mav.addObject("exception", exception);
       mav.addObject("url", req.getRequestURL());
-      mav.setViewName(Constants.DEFAULT_ERROR_VIEW);
+      mav.setViewName(CommonConstants.DEFAULT_ERROR_VIEW);
       return mav;
     }    
 
@@ -44,7 +44,7 @@ public class BaseController {
       ModelAndView mav = new ModelAndView();
       mav.addObject("exception", exception);
       mav.addObject("url", req.getRequestURL());
-      mav.setViewName(Constants.DEFAULT_ERROR_VIEW);
+      mav.setViewName(CommonConstants.DEFAULT_ERROR_VIEW);
       return mav;
     }  	
 }

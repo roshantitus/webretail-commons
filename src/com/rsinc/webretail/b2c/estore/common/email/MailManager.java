@@ -15,7 +15,7 @@ import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
 import com.rsinc.webretail.b2c.estore.common.exception.system.EmailDeliveryFailureSystemException;
-import com.rsinc.webretail.b2c.estore.common.util.Constants;
+import com.rsinc.webretail.b2c.estore.common.util.CommonConstants;
 
 
 
@@ -52,14 +52,14 @@ public class MailManager{
 
 			    if (toString != null && !"".equals(toString))
 			    {
-			        if (toString.contains(Constants.SEMICOLON_SYMBOL))
+			        if (toString.contains(CommonConstants.SEMICOLON_SYMBOL))
 			        {
-			            toStringArray = toString.split(Constants.SEMICOLON_SYMBOL);
+			            toStringArray = toString.split(CommonConstants.SEMICOLON_SYMBOL);
 			            message.setTo(toStringArray);
 			        }
-			        else if (toString.contains(Constants.COMMA_SYMBOL))
+			        else if (toString.contains(CommonConstants.COMMA_SYMBOL))
 			        {
-			            toStringArray = toString.split(Constants.COMMA_SYMBOL);
+			            toStringArray = toString.split(CommonConstants.COMMA_SYMBOL);
 			            message.setTo(toStringArray);
 			        }
 			        else
@@ -69,14 +69,14 @@ public class MailManager{
 			    }
 			    if (ccString != null && !"".equals(ccString))
 			    {
-			        if (ccString.contains(Constants.SEMICOLON_SYMBOL))
+			        if (ccString.contains(CommonConstants.SEMICOLON_SYMBOL))
 			        {
-			            ccStringArray = ccString.split(Constants.SEMICOLON_SYMBOL);
+			            ccStringArray = ccString.split(CommonConstants.SEMICOLON_SYMBOL);
 			            message.setCc(ccStringArray);
 			        }
-			        else if (ccString.contains(Constants.COMMA_SYMBOL))
+			        else if (ccString.contains(CommonConstants.COMMA_SYMBOL))
 			        {
-			            ccStringArray = ccString.split(Constants.COMMA_SYMBOL);
+			            ccStringArray = ccString.split(CommonConstants.COMMA_SYMBOL);
 			            message.setCc(ccStringArray);
 			        }
 			        else

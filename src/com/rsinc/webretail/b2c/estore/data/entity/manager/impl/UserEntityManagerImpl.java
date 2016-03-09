@@ -16,7 +16,7 @@ import com.rsinc.webretail.b2c.estore.common.exception.application.ValidationExc
 import com.rsinc.webretail.b2c.estore.common.exception.system.PersistanceFailureSystemException;
 import com.rsinc.webretail.b2c.estore.common.exception.system.RetrievalFailureSystemException;
 import com.rsinc.webretail.b2c.estore.common.paging.ResultLoadCriteria;
-import com.rsinc.webretail.b2c.estore.common.util.Constants;
+import com.rsinc.webretail.b2c.estore.common.util.CommonConstants;
 import com.rsinc.webretail.b2c.estore.data.entity.UserBean;
 import com.rsinc.webretail.b2c.estore.data.entity.enums.UserStatus;
 import com.rsinc.webretail.b2c.estore.data.entity.manager.PartyEntityManager;
@@ -42,15 +42,15 @@ public class UserEntityManagerImpl extends BaseEntityManagerImpl<UserBean> imple
 	
 		if(null == userBean.getRewardPoints())
 		{
-			userBean.setRewardPoints(Constants.ZERO);
+			userBean.setRewardPoints(CommonConstants.ZERO);
 		}
 		if(null == userBean.getLocaleCode())
 		{
-			userBean.setLocaleCode(Constants.DEFAULT_LOCALE);
+			userBean.setLocaleCode(CommonConstants.DEFAULT_LOCALE);
 		}	
 		if(null == userBean.getSubscribedForNewsLetterYN())
 		{
-			userBean.setSubscribedForNewsLetterYN(Constants.False);
+			userBean.setSubscribedForNewsLetterYN(CommonConstants.False);
 		}		
 		if(null == userBean.getStatus())
 		{

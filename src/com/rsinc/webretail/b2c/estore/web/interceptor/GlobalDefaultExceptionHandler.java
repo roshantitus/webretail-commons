@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.rsinc.webretail.b2c.estore.common.util.Constants;
+import com.rsinc.webretail.b2c.estore.common.util.CommonConstants;
 
 /**
  * @author Roshan Titus
@@ -33,7 +33,7 @@ public class GlobalDefaultExceptionHandler {
         ModelAndView mav = new ModelAndView();
         mav.addObject("exception", e);
         mav.addObject("url", req.getRequestURL());
-        mav.setViewName(Constants.DEFAULT_ERROR_VIEW);
+        mav.setViewName(CommonConstants.DEFAULT_ERROR_VIEW);
         return mav;
     }
 

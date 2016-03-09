@@ -22,7 +22,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.rsinc.webretail.b2c.estore.common.config.AppConfig;
 import com.rsinc.webretail.b2c.estore.common.logging.Logger;
 import com.rsinc.webretail.b2c.estore.common.logging.LoggerFactory;
-import com.rsinc.webretail.b2c.estore.common.util.Constants;
+import com.rsinc.webretail.b2c.estore.common.util.CommonConstants;
 import com.rsinc.webretail.b2c.estore.common.util.SecurityContextUtils;
 import com.rsinc.webretail.b2c.estore.data.entity.PartyBean;
 import com.rsinc.webretail.b2c.estore.data.entity.UserBean;
@@ -60,7 +60,7 @@ public class QueryDaoTest {
 
 			String localeCode = queryDao.queryForObject("select locale_code from user where user_id = ?", new Object[]{userBean.getUserId()}, String.class);
 			assertNotNull(localeCode);
-			assertEquals(localeCode, Constants.DEFAULT_LOCALE);
+			assertEquals(localeCode, CommonConstants.DEFAULT_LOCALE);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,7 +80,7 @@ public class QueryDaoTest {
 
 			Integer rewardPoints = queryDao.queryForObject("select reward_points from user where user_id = ?", new Object[]{userBean.getUserId()}, Integer.class);
 			assertNotNull(rewardPoints);
-			assertEquals(rewardPoints, Constants.ZERO);
+			assertEquals(rewardPoints, CommonConstants.ZERO);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -143,7 +143,7 @@ public class QueryDaoTest {
 			assertEquals(userMap.get("user_id"), userBean.getUserId());
 			assertEquals(userMap.get("status"), UserStatus.NEW.toString());
 			assertEquals(userMap.get("deleted_yn"), Boolean.FALSE);
-			assertEquals(userMap.get("reward_points"), Constants.ZERO);		
+			assertEquals(userMap.get("reward_points"), CommonConstants.ZERO);		
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -180,22 +180,22 @@ public class QueryDaoTest {
 	private UserBean getUser() {
 		UserBean userBean = new UserBean();
 		userBean.setStatus(UserStatus.NEW.toString());
-		userBean.setLocaleCode(Constants.DEFAULT_LOCALE);
-		userBean.setRewardPoints(Constants.ZERO);
+		userBean.setLocaleCode(CommonConstants.DEFAULT_LOCALE);
+		userBean.setRewardPoints(CommonConstants.ZERO);
 		userBean.setCreatedBy(SecurityContextUtils.getLoggedInUserId());
 		userBean.setCreatedDate(Calendar.getInstance());
 		userBean.setUpdatedBy(SecurityContextUtils.getLoggedInUserId());
 		userBean.setUpdatedDate(Calendar.getInstance());
-		userBean.setRecordVersionNo(Constants.ZERO);
-		userBean.setDeletedYN(Constants.False);
+		userBean.setRecordVersionNo(CommonConstants.ZERO);
+		userBean.setDeletedYN(CommonConstants.False);
 		PartyBean party = new PartyBean();
 		party.setEmail(PARTY_EMAIL_ID);
 		party.setCreatedBy(SecurityContextUtils.getLoggedInUserId());
 		party.setCreatedDate(Calendar.getInstance());
 		party.setUpdatedBy(SecurityContextUtils.getLoggedInUserId());
 		party.setUpdatedDate(Calendar.getInstance());
-		party.setRecordVersionNo(Constants.ZERO);
-		party.setDeletedYN(Constants.False);		
+		party.setRecordVersionNo(CommonConstants.ZERO);
+		party.setDeletedYN(CommonConstants.False);		
 		userBean.setParty(party);
 		return userBean;
 	}	

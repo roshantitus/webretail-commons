@@ -20,7 +20,7 @@ import com.rsinc.webretail.b2c.estore.common.exception.application.ValidationExc
 import com.rsinc.webretail.b2c.estore.common.exception.system.PersistanceFailureSystemException;
 import com.rsinc.webretail.b2c.estore.common.exception.system.RetrievalFailureSystemException;
 import com.rsinc.webretail.b2c.estore.common.paging.ResultLoadCriteria;
-import com.rsinc.webretail.b2c.estore.common.util.Constants;
+import com.rsinc.webretail.b2c.estore.common.util.CommonConstants;
 import com.rsinc.webretail.b2c.estore.common.util.SecurityContextUtils;
 import com.rsinc.webretail.b2c.estore.data.dao.PersistanceDao;
 import com.rsinc.webretail.b2c.estore.data.dao.QueryDao;
@@ -75,12 +75,12 @@ public abstract class BaseEntityManagerImpl <T extends BaseBean> implements Base
 		
 		if(null == baseBean.getDeletedYN())
 		{	
-			baseBean.setDeletedYN(Constants.False);
+			baseBean.setDeletedYN(CommonConstants.False);
 		}
 		
 		if(null == baseBean.getRecordVersionNo())
 		{		
-			baseBean.setRecordVersionNo(Constants.ZERO);
+			baseBean.setRecordVersionNo(CommonConstants.ZERO);
 		}
 		
 		if(null == baseBean.getUpdatedBy())

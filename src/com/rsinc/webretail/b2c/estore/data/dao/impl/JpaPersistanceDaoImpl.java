@@ -26,7 +26,7 @@ import com.rsinc.webretail.b2c.estore.common.exception.application.RecordNotFoun
 import com.rsinc.webretail.b2c.estore.common.exception.system.PersistanceFailureSystemException;
 import com.rsinc.webretail.b2c.estore.common.exception.system.RetrievalFailureSystemException;
 import com.rsinc.webretail.b2c.estore.common.paging.ResultLoadCriteria;
-import com.rsinc.webretail.b2c.estore.common.util.Constants;
+import com.rsinc.webretail.b2c.estore.common.util.CommonConstants;
 import com.rsinc.webretail.b2c.estore.data.dao.PersistanceDao;
 
 /**
@@ -115,7 +115,7 @@ public class JpaPersistanceDaoImpl<T> implements PersistanceDao<T> {
 		  	try {				  
 				getEntityManager().persist(t);
 			    i++;
-			    if (i % Constants.BATCH_SIZE == 0) {
+			    if (i % CommonConstants.BATCH_SIZE == 0) {
 			    	// Flush a batch of inserts and release memory.
 			    	getEntityManager().flush();
 			    	getEntityManager().clear();
@@ -138,7 +138,7 @@ public class JpaPersistanceDaoImpl<T> implements PersistanceDao<T> {
 			try{
 				getEntityManager().merge(t);
 			    i++;
-			    if (i % Constants.BATCH_SIZE == 0) {
+			    if (i % CommonConstants.BATCH_SIZE == 0) {
 			    	// Flush a batch of inserts and release memory.
 			    	getEntityManager().flush();
 			    	getEntityManager().clear();

@@ -7,7 +7,7 @@ package com.rsinc.webretail.b2c.estore.common.util;
  * @author Roshan Titus
  *
  */
-public class Constants {
+public class CommonConstants {
 
 	public static final Boolean TRUE = Boolean.TRUE;
 	public static final Boolean False = Boolean.FALSE;

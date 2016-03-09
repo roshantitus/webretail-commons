@@ -18,7 +18,7 @@ public class SecurityContextUtils {
 
 	public static Long getLoggedInUserId() {
 		// TODO Auto-generated method stub
-		return Constants.SYSTEM_USER;
+		return CommonConstants.SYSTEM_USER;
 	}
 
 }
