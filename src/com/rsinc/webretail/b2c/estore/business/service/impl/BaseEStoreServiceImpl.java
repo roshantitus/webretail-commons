@@ -245,7 +245,6 @@ public abstract class BaseEStoreServiceImpl implements EStoreService {
 			else
 			{
 				userBean = new UserBean();
-				userBean.setUserId(user.getUserId());
 			}	
 
 			if(null == userBean.getParty())
@@ -290,8 +289,7 @@ public abstract class BaseEStoreServiceImpl implements EStoreService {
 			}
 			else
 			{
-				categoryBean = new CategoryBean();
-				categoryBean.setCategoryId(category.getCategoryId());				
+				categoryBean = new CategoryBean();	
 			}
 			if (category.getCategoryName() != null)
 				categoryBean.setCategoryName(category.getCategoryName());
@@ -317,8 +315,7 @@ public abstract class BaseEStoreServiceImpl implements EStoreService {
 			}
 			else
 			{
-				productBean = new ProductBean();
-				productBean.setProductId(product.getProductId());			
+				productBean = new ProductBean();			
 			}			
 
 			if(null != product.getProductName())
@@ -339,8 +336,7 @@ public abstract class BaseEStoreServiceImpl implements EStoreService {
 				}
 				else
 				{
-					categoryBean = new CategoryBean();
-					categoryBean.setCategoryId(product.getCategory().getCategoryId());				
+					categoryBean = new CategoryBean();		
 				}
 				if (product.getCategory().getCategoryName() != null)
 					categoryBean.setCategoryName(product.getCategory().getCategoryName());
@@ -369,8 +365,7 @@ public abstract class BaseEStoreServiceImpl implements EStoreService {
 			}
 			else
 			{
-				orderBean = new OrderBean();
-				orderBean.setOrderId(order.getOrderId());		
+				orderBean = new OrderBean();	
 			}		
 			if(order.getOrderDate() != null)
 				orderBean.setOrderDate(order.getOrderDate());
