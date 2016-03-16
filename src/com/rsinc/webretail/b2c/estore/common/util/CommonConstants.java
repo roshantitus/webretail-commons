@@ -26,4 +26,6 @@ public class CommonConstants {
 	public static final Integer BATCH_SIZE = 0;
 	
     public static final String DEFAULT_ERROR_VIEW = "errorPage";
+    
+    public static final String USER_AGENT = "User-Agent";
 }
