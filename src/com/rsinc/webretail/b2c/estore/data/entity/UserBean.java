@@ -39,6 +39,7 @@ public class UserBean extends BaseBean {
 	private AuthenticationBean authentication;
 	private String status;
 	private String localeCode;
+	private String currency;
 	private List<RoleBean> roles;
 	private AddressBean billingAddress;
 	private AddressBean deliveryAddress;
