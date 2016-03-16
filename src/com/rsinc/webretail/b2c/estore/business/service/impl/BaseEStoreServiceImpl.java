@@ -83,16 +83,7 @@ public abstract class BaseEStoreServiceImpl implements EStoreService {
 			user.setUserId(userBean.getUserId());
 			if(null != userBean.getParty())
 			{
-				user.setFirstName(userBean.getParty().getFirstName());
-				user.setMiddleName(userBean.getParty().getMiddleName());
-				user.setLastName(userBean.getParty().getLastName());
-				user.setGender(userBean.getParty().getGender());
-				user.setEmail(userBean.getParty().getEmail());
-				user.setDateOfBirth(userBean.getParty().getDateOfBirth());
-				user.setBusinessPhoneNumber(userBean.getParty().getBusinessPhoneNumber());
-				user.setHomePhoneNumber(userBean.getParty().getHomePhoneNumber());
-				user.setCellPhoneNumber(userBean.getParty().getCellPhoneNumber());
-				
+
 			}
 		}
 		return user;
@@ -250,25 +241,9 @@ public abstract class BaseEStoreServiceImpl implements EStoreService {
 			if(null == userBean.getParty())
 			{
 				userBean.setParty(new PartyBean());				
-			}		
-			if(user.getFirstName() != null)
-				userBean.getParty().setFirstName(user.getFirstName());
-			if(user.getMiddleName() != null)
-				userBean.getParty().setMiddleName(user.getMiddleName());
-			if(user.getLastName() != null)
-				userBean.getParty().setLastName(user.getLastName());
-			if(user.getGender() != null)
-				userBean.getParty().setGender(user.getGender());
+			}
 			if(user.getEmail() != null)
 				userBean.getParty().setEmail(user.getEmail());
-			if(user.getDateOfBirth() != null)
-				userBean.getParty().setDateOfBirth(user.getDateOfBirth());
-			if(user.getBusinessPhoneNumber() != null)
-				userBean.getParty().setBusinessPhoneNumber(user.getBusinessPhoneNumber());
-			if(user.getHomePhoneNumber() != null)
-				userBean.getParty().setHomePhoneNumber(user.getHomePhoneNumber());
-			if(user.getCellPhoneNumber() != null)
-				userBean.getParty().setCellPhoneNumber(user.getCellPhoneNumber());
 		}
 		return userBean;
 	}
