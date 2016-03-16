@@ -3,6 +3,8 @@
  */
 package com.rsinc.webretail.b2c.estore.data.entity;
 
+import java.util.List;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
@@ -34,14 +36,16 @@ public class UserBean extends BaseBean {
 	
 
 	private PartyBean party;
-//	private AuthenticationBean authentication;
+	private AuthenticationBean authentication;
 	private String status;
 	private String localeCode;
-//	private List<RoleBean> roles;
-//	private AddressBean billingAddress;
-//	private AddressBean deliveryAddress;
+	private List<RoleBean> roles;
+	private AddressBean billingAddress;
+	private AddressBean deliveryAddress;
 	private Integer rewardPoints;
 	private Boolean subscribedForNewsLetterYN;
+	
+	private UserImageBean profilePicture;
 	
 	public UserBean() {
 		super();
@@ -69,13 +73,13 @@ public class UserBean extends BaseBean {
 		this.party = party;
 	}
 
-//	public AuthenticationBean getAuthentication() {
-//		return authentication;
-//	}
-//
-//	public void setAuthentication(AuthenticationBean authentication) {
-//		this.authentication = authentication;
-//	}
+	public AuthenticationBean getAuthentication() {
+		return authentication;
+	}
+
+	public void setAuthentication(AuthenticationBean authentication) {
+		this.authentication = authentication;
+	}
 
 	@Column(name = "status")	
 	public String getStatus() {
@@ -95,29 +99,29 @@ public class UserBean extends BaseBean {
 		this.localeCode = localeCode;
 	}
 
-//	public List<RoleBean> getRoles() {
-//		return roles;
-//	}
-//
-//	public void setRoles(List<RoleBean> roles) {
-//		this.roles = roles;
-//	}
-//
-//	public AddressBean getBillingAddress() {
-//		return billingAddress;
-//	}
-//
-//	public void setBillingAddress(AddressBean billingAddress) {
-//		this.billingAddress = billingAddress;
-//	}
-//
-//	public AddressBean getDeliveryAddress() {
-//		return deliveryAddress;
-//	}
-//
-//	public void setDeliveryAddress(AddressBean deliveryAddress) {
-//		this.deliveryAddress = deliveryAddress;
-//	}
+	public List<RoleBean> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<RoleBean> roles) {
+		this.roles = roles;
+	}
+
+	public AddressBean getBillingAddress() {
+		return billingAddress;
+	}
+
+	public void setBillingAddress(AddressBean billingAddress) {
+		this.billingAddress = billingAddress;
+	}
+
+	public AddressBean getDeliveryAddress() {
+		return deliveryAddress;
+	}
+
+	public void setDeliveryAddress(AddressBean deliveryAddress) {
+		this.deliveryAddress = deliveryAddress;
+	}
 
 	@Column(name = "reward_points")	
 	public Integer getRewardPoints() {
@@ -137,6 +141,15 @@ public class UserBean extends BaseBean {
 		this.subscribedForNewsLetterYN = subscribedForNewsLetterYN;
 	}
 
+	public UserImageBean getProfilePicture() {
+		return profilePicture;
+	}
+
+	public void setProfilePicture(UserImageBean profilePicture) {
+		this.profilePicture = profilePicture;
+	}
+
+	
 //	@Transient
 //	public String getEmail() {
 //		return party.getEmail();
@@ -145,4 +158,6 @@ public class UserBean extends BaseBean {
 //	public void setEmail(String email) {
 //		this.party.setEmail(email);
 //	}	
+	
+	
 }

@@ -29,6 +29,7 @@ public class CategoryBean extends BaseBean {
 	
 	private String categoryName;
 	private String categoryDescription;
+	private Integer sortOrder;
 
 	public CategoryBean() {
 		super();
@@ -68,5 +69,12 @@ public class CategoryBean extends BaseBean {
 		this.categoryDescription = categoryDescription;
 	}	
 	
-	
+
+	public Integer getSortOrder() {
+		return sortOrder;
+	}
+
+	public void setSortOrder(Integer sortOrder) {
+		this.sortOrder = sortOrder;
+	}	
 }

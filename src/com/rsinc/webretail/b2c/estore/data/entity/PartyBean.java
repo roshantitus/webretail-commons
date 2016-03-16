@@ -35,6 +35,7 @@ public class PartyBean extends BaseBean {
 	 */
 	private static final long serialVersionUID = 6462474650349080734L;
 
+	private String partyType;
 	private String firstName;
 	private String middleName;
 	private String lastName;
@@ -42,10 +43,10 @@ public class PartyBean extends BaseBean {
 	private String homePhoneNumber;
 	private String businessPhoneNumber;
 	private String cellPhoneNumber;
+	private String faxNumber;
 	private AddressBean partyAddress;
 	private String gender;
 	private Calendar dateOfBirth;
-//	private UserBean user;
 	
 	/**
 	 * 
@@ -158,16 +159,25 @@ public class PartyBean extends BaseBean {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-//	@OneToOne(optional=false, mappedBy="party")
-//	public UserBean getUser() {
-//		return user;
-//	}
-//
-//
-//	public void setUser(UserBean user) {
-//		this.user = user;
-//	}
 
-	
+	public String getPartyType() {
+		return partyType;
+	}
+
+
+	public void setPartyType(String partyType) {
+		this.partyType = partyType;
+	}
+
+
+	public String getFaxNumber() {
+		return faxNumber;
+	}
+
+
+	public void setFaxNumber(String faxNumber) {
+		this.faxNumber = faxNumber;
+	}
+
 	
 }

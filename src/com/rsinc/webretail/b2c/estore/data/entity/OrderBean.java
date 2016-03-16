@@ -36,7 +36,13 @@ public class OrderBean extends BaseBean{
 
 	private Calendar orderDate;
 	private String orderStatus;
-	
+	private AddressBean billingAddress;
+	private AddressBean deliveryAddress;
+	private PaymentBean payment;
+	private ShipmentBean shipment;
+	private DeliveryBean delivery;
+	private UserBean user;
+	private CouponBean coupon;
 	
 	/**
 	 * @return
@@ -74,6 +80,22 @@ public class OrderBean extends BaseBean{
 	public void setOrderId(Long orderId) {
 		this.id = orderId;
 		
+	}
+
+	public AddressBean getBillingAddress() {
+		return billingAddress;
+	}
+
+	public void setBillingAddress(AddressBean billingAddress) {
+		this.billingAddress = billingAddress;
+	}
+
+	public AddressBean getDeliveryAddress() {
+		return deliveryAddress;
+	}
+
+	public void setDeliveryAddress(AddressBean deliveryAddress) {
+		this.deliveryAddress = deliveryAddress;
 	}
 
 }

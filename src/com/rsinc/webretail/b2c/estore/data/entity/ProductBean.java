@@ -3,6 +3,8 @@
  */
 package com.rsinc.webretail.b2c.estore.data.entity;
 
+import java.util.List;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
@@ -36,6 +38,10 @@ public class ProductBean  extends BaseBean {
 	private Integer quantity;
 	private Double unitPrice;
 	private CategoryBean category;
+	private Integer sortOrder;		
+	private List<PoductImageBean> productImages;
+	private List<ProductAttributeBean> productAttributes;
+	private List<ProductReviewBean> reviews;
 	
 	/**
 	 * @return
@@ -100,5 +106,30 @@ public class ProductBean  extends BaseBean {
 		this.category = category;
 	}
 
+
+	public Integer getSortOrder() {
+		return sortOrder;
+	}
+
+	public void setSortOrder(Integer sortOrder) {
+		this.sortOrder = sortOrder;
+	}
+
+	public List<PoductImageBean> getProductImages() {
+		return productImages;
+	}
+
+	public void setProductImages(List<PoductImageBean> productImages) {
+		this.productImages = productImages;
+	}
+
+	public List<ProductAttributeBean> getProductAttributes() {
+		return productAttributes;
+	}
+
+	public void setProductAttributes(List<ProductAttributeBean> productAttributes) {
+		this.productAttributes = productAttributes;
+	}
 	
+		
 }

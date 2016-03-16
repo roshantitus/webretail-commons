@@ -27,6 +27,10 @@ public class OrderLineItemBean extends BaseBean {
 	 */
 	private static final long serialVersionUID = -766227934910041988L;
 
+	private ProductBean product;
+	private Integer quantity;
+	private Double price;
+	
 	public OrderLineItemBean() {
 		super();
 		// TODO initialize object
@@ -40,5 +44,25 @@ public class OrderLineItemBean extends BaseBean {
 	
 	public void setOrderLineItemId(Long id) {
 		this.id = id;
+	}
+	public ProductBean getProduct() {
+		return product;
+	}
+	public void setProduct(ProductBean product) {
+		this.product = product;
+	}
+	public Integer getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+	public Double getPrice() {
+		return price;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
 	}	
+	
+	
 }
