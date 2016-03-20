@@ -3,24 +3,15 @@
  */
 package com.rsinc.webretail.b2c.estore.data.entity;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.MappedSuperclass;
 
 /**
  * @author Roshan Titus
  *
  */
-@Entity
-@Access(AccessType.PROPERTY)
-//@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
-@Table(name="preference")
-public class PreferenceBean extends BaseBean {
+@MappedSuperclass
+public abstract class PreferenceBean extends BaseBean {
 
 	/**
 	 * 
@@ -34,17 +25,6 @@ public class PreferenceBean extends BaseBean {
 		super();
 		// TODO initialize object
 	}
-
-	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	@Column(name = "preference_id")
-	public Long getPreferenceId() {
-		return id;
-	}	
-	
-	public void setPreferenceId(Long id) {
-		this.id = id;
-	}	
 	
 	@Column(name = "preference_name")
 	public String getPreferenceName() {

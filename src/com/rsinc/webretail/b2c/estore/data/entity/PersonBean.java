@@ -8,11 +8,8 @@ import java.util.Calendar;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -25,7 +22,7 @@ import com.rsinc.webretail.b2c.estore.data.entity.enums.GenderType;
 @Entity
 @Access(AccessType.PROPERTY)
 //@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
-@Table(name="person")
+@DiscriminatorValue(value="P")
 public class PersonBean extends PartyBean {
 
 	/**
@@ -47,17 +44,6 @@ public class PersonBean extends PartyBean {
 		super();
 		// TODO initialize object
 	}
-
-	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	@Column(name = "person_id")
-	public Long getPersonId() {
-		return id;
-	}	
-	
-	public void setPersonId(Long id) {
-		this.id = id;
-	}	
 	
 	@Column(name = "first_name")
 	public String getFirstName() {

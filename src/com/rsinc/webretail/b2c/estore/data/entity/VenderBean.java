@@ -4,7 +4,9 @@
 package com.rsinc.webretail.b2c.estore.data.entity;
 
 import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -12,8 +14,9 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author Roshan Titus
  *
  */
-@MappedSuperclass
-public class VenderBean extends BaseBean {
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class VenderBean extends BaseBean {
 
 	/**
 	 * 

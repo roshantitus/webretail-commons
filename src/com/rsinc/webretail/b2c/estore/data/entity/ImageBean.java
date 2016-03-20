@@ -3,14 +3,8 @@
  */
 package com.rsinc.webretail.b2c.estore.data.entity;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.MappedSuperclass;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -18,11 +12,8 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author Roshan Titus
  *
  */
-@Entity
-@Access(AccessType.PROPERTY)
-//@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
-@Table(name="image")
-public class ImageBean extends BaseBean {
+@MappedSuperclass
+public abstract class ImageBean extends BaseBean {
 
 	/**
 	 * 
@@ -48,17 +39,6 @@ public class ImageBean extends BaseBean {
 		super();
 		// TODO initialize object
 	}
-
-	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	@Column(name = "image_id")
-	public Long getImageId() {
-		return id;
-	}
-
-	public void setImageId(Long id) {
-		this.id = id;
-	}	
 
 	@Column(name = "image_file_path")
 	public String getImageFilePath() {

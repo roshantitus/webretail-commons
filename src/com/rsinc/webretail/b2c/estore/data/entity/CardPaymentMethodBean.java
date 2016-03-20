@@ -3,15 +3,8 @@
  */
 package com.rsinc.webretail.b2c.estore.data.entity;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -20,7 +13,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  */
 @MappedSuperclass
-public class CardPaymentMethodBean extends PaymentMethodBean {
+public abstract class CardPaymentMethodBean extends PaymentMethodBean {
 
 	/**
 	 * 

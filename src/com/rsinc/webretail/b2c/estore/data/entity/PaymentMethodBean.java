@@ -3,24 +3,18 @@
  */
 package com.rsinc.webretail.b2c.estore.data.entity;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
 
 /**
  * @author Roshan Titus
  *
  */
 @Entity
-@Access(AccessType.PROPERTY)
-//@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
-@Table(name="payment_method")
-public class PaymentMethodBean extends BaseBean {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class PaymentMethodBean extends BaseBean {
 
 	/**
 	 * 
@@ -31,15 +25,5 @@ public class PaymentMethodBean extends BaseBean {
 		super();
 		// TODO initialize object
 	}
-
-	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	@Column(name = "payment_method_id")
-	public Long getPaymentMethodId() {
-		return id;
-	}	
-	
-	public void setPaymentMethodId(Long id) {
-		this.id = id;
-	}		
+		
 }

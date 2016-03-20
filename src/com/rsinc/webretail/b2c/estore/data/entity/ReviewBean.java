@@ -3,26 +3,15 @@
  */
 package com.rsinc.webretail.b2c.estore.data.entity;
 
-import java.util.Date;
-
-import javax.persistence.Access;
-import javax.persistence.AccessType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.MappedSuperclass;
 
 /**
  * @author Roshan Titus
  *
  */
-@Entity
-@Access(AccessType.PROPERTY)
-//@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
-@Table(name="review")
-public class ReviewBean extends BaseBean {
+@MappedSuperclass
+public abstract class ReviewBean extends BaseBean {
 
 	/**
 	 * 
@@ -39,17 +28,7 @@ public class ReviewBean extends BaseBean {
 		super();
 		// TODO initialize object
 	}
-	
-	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	@Column(name = "review_id")
-	public Long getReviewId() {
-		return id;
-	}	
-	
-	public void setReviewId(Long id) {
-		this.id = id;
-	}		
+		
 
 	@Column(name = "comments")
 	public String getComments() {

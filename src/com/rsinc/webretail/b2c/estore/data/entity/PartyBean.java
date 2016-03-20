@@ -7,11 +7,15 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -30,6 +34,8 @@ import com.rsinc.webretail.b2c.estore.data.entity.enums.PartyType;
 @Access(AccessType.PROPERTY)
 //@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
 @Table(name="party")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="party_type", discriminatorType=DiscriminatorType.STRING)
 public class PartyBean extends BaseBean {
 
 	/**
