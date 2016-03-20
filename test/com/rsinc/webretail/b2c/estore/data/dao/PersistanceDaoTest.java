@@ -23,6 +23,7 @@ import com.rsinc.webretail.b2c.estore.common.util.CommonConstants;
 import com.rsinc.webretail.b2c.estore.common.util.SecurityContextUtils;
 import com.rsinc.webretail.b2c.estore.data.entity.PartyBean;
 import com.rsinc.webretail.b2c.estore.data.entity.UserBean;
+import com.rsinc.webretail.b2c.estore.data.entity.enums.UserStatus;
 
 /**
  * @author Roshan Titus
@@ -61,7 +62,7 @@ public class PersistanceDaoTest {
 	 */
 	private UserBean getUser() {
 		UserBean userBean = new UserBean();
-		userBean.setStatus("NEW");
+		userBean.setStatus(UserStatus.getUserStatus("NEW"));
 		userBean.setLocaleCode("en_US");
 		userBean.setCreatedBy(SecurityContextUtils.getLoggedInUserId());
 		userBean.setCreatedDate(Calendar.getInstance());

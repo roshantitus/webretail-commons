@@ -3,10 +3,25 @@
  */
 package com.rsinc.webretail.b2c.estore.data.entity;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * @author Roshan Titus
  *
  */
+@Entity
+@Access(AccessType.PROPERTY)
+//@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
+@Table(name="image")
 public class ImageBean extends BaseBean {
 
 	/**
@@ -14,6 +29,7 @@ public class ImageBean extends BaseBean {
 	 */
 	private static final long serialVersionUID = -4667762931922711304L;
 
+	@NotEmpty
 	private String imageFilePath;
 
 	private Integer imageWidth;
@@ -33,7 +49,9 @@ public class ImageBean extends BaseBean {
 		// TODO initialize object
 	}
 
-
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Column(name = "image_id")
 	public Long getImageId() {
 		return id;
 	}
@@ -42,6 +60,7 @@ public class ImageBean extends BaseBean {
 		this.id = id;
 	}	
 
+	@Column(name = "image_file_path")
 	public String getImageFilePath() {
 		return imageFilePath;
 	}
@@ -53,7 +72,7 @@ public class ImageBean extends BaseBean {
 	}
 
 
-
+	@Column(name = "image_width")
 	public Integer getImageWidth() {
 		return imageWidth;
 	}
@@ -65,7 +84,7 @@ public class ImageBean extends BaseBean {
 	}
 
 
-
+	@Column(name = "image_height")
 	public Integer getImageHeight() {
 		return imageHeight;
 	}
@@ -77,7 +96,7 @@ public class ImageBean extends BaseBean {
 	}
 
 
-
+	@Column(name = "image_thumbnail_file_path")
 	public String getImageThumbnailFilePath() {
 		return imageThumbnailFilePath;
 	}
@@ -89,7 +108,7 @@ public class ImageBean extends BaseBean {
 	}
 
 
-
+	@Column(name = "image_thumbnail_width")
 	public Integer getImageThumbnailWidth() {
 		return imageThumbnailWidth;
 	}
@@ -101,7 +120,7 @@ public class ImageBean extends BaseBean {
 	}
 
 
-
+	@Column(name = "image_thumbnail_height")
 	public Integer getImageThumbnailHeight() {
 		return imageThumbnailHeight;
 	}

@@ -3,6 +3,8 @@
  */
 package com.rsinc.webretail.b2c.estore.data.entity;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,12 +12,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * @author Roshan Titus 
  *
  */
 @Entity
-@Table(name="ADDRESS")
+@Access(AccessType.PROPERTY)
+//@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
+@Table(name="address")
 public class AddressBean extends BaseBean {
 
 	/**
@@ -23,13 +29,26 @@ public class AddressBean extends BaseBean {
 	 */
 	private static final long serialVersionUID = 2647795244020563453L;
 
+	@NotEmpty
 	private String addressLine1;
+	
+	@NotEmpty
 	private String addressLine2;
+	
 	private String landmark;
+	
+	@NotEmpty
 	private String city;
+	
+	@NotEmpty
 	private String zipCode;
+	
+	@NotEmpty
 	private String state;
+	
+	@NotEmpty
 	private String country;
+	private String websiteURL;
 	
 	/**
 	 * 
@@ -118,6 +137,16 @@ public class AddressBean extends BaseBean {
 
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+	@Column(name = "website_url")
+	public String getWebsiteURL() {
+		return websiteURL;
+	}
+
+
+	public void setWebsiteURL(String websiteURL) {
+		this.websiteURL = websiteURL;
 	}	
 
 	

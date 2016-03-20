@@ -18,6 +18,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * @author Roshan Titus
  *
@@ -25,7 +27,7 @@ import javax.persistence.Table;
 @Entity
 @Access(AccessType.PROPERTY)
 //@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
-@Table(name="PRODUCT")
+@Table(name="product")
 public class ProductBean  extends BaseBean {
 
 	/**
@@ -33,6 +35,7 @@ public class ProductBean  extends BaseBean {
 	 */
 	private static final long serialVersionUID = -5181327528560241143L;
 	
+	@NotEmpty
 	private String productName;
 	private String productDescription;
 	private Integer quantity;
@@ -42,6 +45,7 @@ public class ProductBean  extends BaseBean {
 	private List<PoductImageBean> productImages;
 	private List<ProductAttributeBean> productAttributes;
 	private List<ProductReviewBean> reviews;
+	private List<ProductBean> relatedProducts;
 	
 	/**
 	 * @return
@@ -106,7 +110,7 @@ public class ProductBean  extends BaseBean {
 		this.category = category;
 	}
 
-
+	@Column(name = "sort_order")
 	public Integer getSortOrder() {
 		return sortOrder;
 	}
@@ -129,6 +133,22 @@ public class ProductBean  extends BaseBean {
 
 	public void setProductAttributes(List<ProductAttributeBean> productAttributes) {
 		this.productAttributes = productAttributes;
+	}
+
+	public List<ProductReviewBean> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<ProductReviewBean> reviews) {
+		this.reviews = reviews;
+	}
+
+	public List<ProductBean> getRelatedProducts() {
+		return relatedProducts;
+	}
+
+	public void setRelatedProducts(List<ProductBean> relatedProducts) {
+		this.relatedProducts = relatedProducts;
 	}
 	
 		

@@ -8,5 +8,14 @@ package com.rsinc.webretail.b2c.estore.data.entity.enums;
  *
  */
 public enum InvoiceStatus {
-	ISSUES, PAYED
+	ISSUED, PAYED;
+	
+    public static InvoiceStatus getInvoiceStatus(String invoiceStatus)
+    {
+        if(invoiceStatus.equalsIgnoreCase("PAYED"))
+        {
+            return PAYED;
+        }      
+        return ISSUED;
+    }	
 }

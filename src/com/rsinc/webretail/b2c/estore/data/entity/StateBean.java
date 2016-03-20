@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Access(AccessType.PROPERTY)
 //@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
-@Table(name="STATE_MASTER")
+@Table(name="state_master")
 public class StateBean extends BaseBean {
 
 	/**

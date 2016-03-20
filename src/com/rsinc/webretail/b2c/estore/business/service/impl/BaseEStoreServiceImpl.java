@@ -24,6 +24,7 @@ import com.rsinc.webretail.b2c.estore.data.entity.OrderBean;
 import com.rsinc.webretail.b2c.estore.data.entity.PartyBean;
 import com.rsinc.webretail.b2c.estore.data.entity.ProductBean;
 import com.rsinc.webretail.b2c.estore.data.entity.UserBean;
+import com.rsinc.webretail.b2c.estore.data.entity.enums.OrderStatus;
 import com.rsinc.webretail.b2c.estore.data.entity.manager.CategoryEntityManager;
 import com.rsinc.webretail.b2c.estore.data.entity.manager.OrderEntityManager;
 import com.rsinc.webretail.b2c.estore.data.entity.manager.ProductEntityManager;
@@ -184,7 +185,7 @@ public abstract class BaseEStoreServiceImpl implements EStoreService {
 			order = new Order();
 			order.setOrderId(orderBean.getOrderId());
 			order.setOrderDate(orderBean.getOrderDate());
-			order.setOrderStatus(orderBean.getOrderStatus());
+			order.setOrderStatus(orderBean.getOrderStatus().toString());
 		}
 		return order;
 	}
@@ -345,7 +346,7 @@ public abstract class BaseEStoreServiceImpl implements EStoreService {
 			if(order.getOrderDate() != null)
 				orderBean.setOrderDate(order.getOrderDate());
 			if(order.getOrderStatus() != null)
-			orderBean.setOrderStatus(order.getOrderStatus());
+			orderBean.setOrderStatus(OrderStatus.getOrderStatus(order.getOrderStatus()));
 		}
 		return orderBean;
 	}	

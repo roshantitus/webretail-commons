@@ -5,14 +5,27 @@ package com.rsinc.webretail.b2c.estore.data.entity;
 
 import java.util.Calendar;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.rsinc.webretail.b2c.estore.data.entity.enums.GenderType;
 
 /**
  * @author Roshan Titus
  *
  */
+@Entity
+@Access(AccessType.PROPERTY)
+//@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
+@Table(name="person")
 public class PersonBean extends PartyBean {
 
 	/**
@@ -27,7 +40,7 @@ public class PersonBean extends PartyBean {
 	private String businessPhoneNumber;
 	private String cellPhoneNumber;
 	private String faxNumber;
-	private String gender;
+	private GenderType gender;
 	private Calendar dateOfBirth;
 	
 	public PersonBean() {
@@ -35,6 +48,16 @@ public class PersonBean extends PartyBean {
 		// TODO initialize object
 	}
 
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Column(name = "person_id")
+	public Long getPersonId() {
+		return id;
+	}	
+	
+	public void setPersonId(Long id) {
+		this.id = id;
+	}	
 	
 	@Column(name = "first_name")
 	public String getFirstName() {
@@ -91,11 +114,11 @@ public class PersonBean extends PartyBean {
 	}
 
 	@Column(name = "gender")
-	public String getGender() {
+	public GenderType getGender() {
 		return gender;
 	}
 
-	public void setGender(String gender) {
+	public void setGender(GenderType gender) {
 		this.gender = gender;
 	}
 
@@ -110,7 +133,7 @@ public class PersonBean extends PartyBean {
 	}
 
 
-
+	@Column(name = "fax_number")
 	public String getFaxNumber() {
 		return faxNumber;
 	}

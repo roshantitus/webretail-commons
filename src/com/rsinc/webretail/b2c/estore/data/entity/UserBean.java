@@ -17,6 +17,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+import com.rsinc.webretail.b2c.estore.data.entity.enums.UserStatus;
 
 
 /**
@@ -26,7 +31,7 @@ import javax.persistence.Table;
 @Entity
 @Access(AccessType.PROPERTY)
 //@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
-@Table(name="USER")
+@Table(name="user")
 public class UserBean extends BaseBean {
 
 	/**
@@ -37,9 +42,14 @@ public class UserBean extends BaseBean {
 
 	private PartyBean party;
 	private AuthenticationBean authentication;
-	private String status;
+	
+	@NotNull
+	private UserStatus status;
 	private String localeCode;
+	
+	@NotEmpty
 	private String currency;
+	
 	private List<RoleBean> roles;
 	private AddressBean billingAddress;
 	private AddressBean deliveryAddress;
@@ -65,7 +75,7 @@ public class UserBean extends BaseBean {
 	}
 	
 	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="PARTY_ID", unique=true, nullable=false, updatable=true)	
+    @JoinColumn(name="party_id", unique=true, nullable=false, updatable=true)		
 	public PartyBean getParty() {
 		return party;
 	}
@@ -74,6 +84,8 @@ public class UserBean extends BaseBean {
 		this.party = party;
 	}
 
+	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="user_id", unique=true, nullable=false, updatable=true)		
 	public AuthenticationBean getAuthentication() {
 		return authentication;
 	}
@@ -83,11 +95,11 @@ public class UserBean extends BaseBean {
 	}
 
 	@Column(name = "status")	
-	public String getStatus() {
+	public UserStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(UserStatus status) {
 		this.status = status;
 	}
 
@@ -108,6 +120,8 @@ public class UserBean extends BaseBean {
 		this.roles = roles;
 	}
 
+	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="address_id", unique=true, nullable=false, updatable=true)	
 	public AddressBean getBillingAddress() {
 		return billingAddress;
 	}
@@ -116,6 +130,8 @@ public class UserBean extends BaseBean {
 		this.billingAddress = billingAddress;
 	}
 
+	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="address_id", unique=true, nullable=false, updatable=true)	
 	public AddressBean getDeliveryAddress() {
 		return deliveryAddress;
 	}
@@ -142,6 +158,8 @@ public class UserBean extends BaseBean {
 		this.subscribedForNewsLetterYN = subscribedForNewsLetterYN;
 	}
 
+	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="user_image_id", unique=true, nullable=false, updatable=true)		
 	public UserImageBean getProfilePicture() {
 		return profilePicture;
 	}
@@ -150,15 +168,13 @@ public class UserBean extends BaseBean {
 		this.profilePicture = profilePicture;
 	}
 
-	
-//	@Transient
-//	public String getEmail() {
-//		return party.getEmail();
-//	}
-//
-//	public void setEmail(String email) {
-//		this.party.setEmail(email);
-//	}	
-	
-	
+	@Column(name = "currency")
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+
 }

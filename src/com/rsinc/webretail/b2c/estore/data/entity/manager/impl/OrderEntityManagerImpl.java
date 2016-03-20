@@ -39,7 +39,7 @@ public class OrderEntityManagerImpl extends BaseEntityManagerImpl<OrderBean> imp
 		
 		if(null == orderBean.getOrderStatus())
 		{
-			orderBean.setOrderStatus(OrderStatus.NEW.toString());
+			orderBean.setOrderStatus(OrderStatus.NEW);
 		}	
 		super.setDefaultValues(orderBean);
 	}

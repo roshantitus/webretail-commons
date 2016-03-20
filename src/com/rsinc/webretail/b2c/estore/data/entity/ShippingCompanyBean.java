@@ -19,25 +19,40 @@ import javax.persistence.Table;
 @Entity
 @Access(AccessType.PROPERTY)
 //@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
-@Table(name="cart")
-public class ShoppingCartBean extends BaseBean {
+@Table(name="shipping_company_master")
+public class ShippingCompanyBean extends VenderBean {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7679102672484694933L;
-
-	public ShoppingCartBean() {
-		super();
+	private static final long serialVersionUID = 7733853308703200108L;
+	private String trackerURL;
+//	private List<ShippingCharge>
+	/**
+	 * 
+	 */
+	public ShippingCompanyBean() {
+		// TODO initialize object
 	}
+	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	@Column(name = "cart_id")
-	public Long getShoppingCartId() {
+	@Column(name = "shipping_company_id")
+	public Long getShippingCompanyId() {
 		return id;
 	}	
 	
-	public void setShoppingCartId(Long id) {
+	public void setShippingCompanyId(Long id) {
 		this.id = id;
 	}	
+	
+	@Column(name = "tracker_url")
+	public String getTrackerURL() {
+		return trackerURL;
+	}
+	public void setTrackerURL(String trackerURL) {
+		this.trackerURL = trackerURL;
+	}
+
+	
 }

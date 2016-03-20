@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * @author Roshan Titus
  *
@@ -19,7 +21,7 @@ import javax.persistence.Table;
 @Entity
 @Access(AccessType.PROPERTY)
 //@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
-@Table(name="CATEGORY")
+@Table(name="category")
 public class CategoryBean extends BaseBean {
 
 	/**
@@ -27,8 +29,10 @@ public class CategoryBean extends BaseBean {
 	 */
 	private static final long serialVersionUID = 585130359548242794L;
 	
+	@NotEmpty
 	private String categoryName;
 	private String categoryDescription;
+	private CategoryBean parentCategory;
 	private Integer sortOrder;
 
 	public CategoryBean() {
@@ -69,12 +73,24 @@ public class CategoryBean extends BaseBean {
 		this.categoryDescription = categoryDescription;
 	}	
 	
-
+	@Column(name = "sort_order")	
 	public Integer getSortOrder() {
 		return sortOrder;
 	}
 
 	public void setSortOrder(Integer sortOrder) {
 		this.sortOrder = sortOrder;
+	}
+
+
+	public CategoryBean getParentCategory() {
+		return parentCategory;
+	}
+
+
+	public void setParentCategory(CategoryBean parentCategory) {
+		this.parentCategory = parentCategory;
 	}	
+	
+	
 }

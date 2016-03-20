@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Access(AccessType.PROPERTY)
 //@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
-@Table(name="PINCODE_MASTER")
+@Table(name="pincode_master")
 public class PinCodeBean extends BaseBean {
 
 	/**
@@ -40,4 +40,6 @@ public class PinCodeBean extends BaseBean {
 	public void setPinCodeId(Long id) {
 		this.id = id;
 	}	
+	
+	
 }

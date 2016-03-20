@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Access(AccessType.PROPERTY)
 //@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
-@Table(name="CART_LINE_ITEM")
+@Table(name="cart_line_item")
 public class ShoppingCartLineItemBean extends BaseBean {
 
 	/**

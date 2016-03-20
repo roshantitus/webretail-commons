@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Access(AccessType.PROPERTY)
 //@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
-@Table(name="LOCALE_MASTER")
+@Table(name="locale_master")
 public class LocaleBean extends BaseBean {
 
 	/**

@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Access(AccessType.PROPERTY)
 //@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
-@Table(name="ORDER_LINE_ITEM")
+@Table(name="order_line_item")
 public class OrderLineItemBean extends BaseBean {
 
 	/**
@@ -45,18 +45,23 @@ public class OrderLineItemBean extends BaseBean {
 	public void setOrderLineItemId(Long id) {
 		this.id = id;
 	}
+	
 	public ProductBean getProduct() {
 		return product;
 	}
 	public void setProduct(ProductBean product) {
 		this.product = product;
 	}
+	
+	@Column(name = "quantity")
 	public Integer getQuantity() {
 		return quantity;
 	}
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
+	
+	@Column(name = "price")
 	public Double getPrice() {
 		return price;
 	}

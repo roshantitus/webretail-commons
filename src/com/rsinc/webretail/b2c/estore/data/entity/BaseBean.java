@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -29,10 +30,20 @@ public abstract class BaseBean implements Serializable{
 	//The ID field in MappedSuperclass. 
 	//Getters and Setters and mapping for this field will be created only in the subclasses.	
 	protected Long id;
+	
+	@NotNull
 	protected Long createdBy;
+	
+	@NotNull
 	protected Calendar createdDate;
+	
+	@NotNull
 	protected Long updatedBy;
+	
+	@NotNull
 	protected Calendar updatedDate;
+	
+	
 	protected Integer recordVersionNo;
 	protected Boolean deletedYN;
 	
@@ -121,4 +132,6 @@ public abstract class BaseBean implements Serializable{
 				+ updatedBy + ", updatedDate=" + updatedDate + ", recordVersionNo=" + recordVersionNo + ", deletedYN="
 				+ deletedYN + "]";
 	}
+	
+	
 }

@@ -54,7 +54,7 @@ public class UserEntityManagerImpl extends BaseEntityManagerImpl<UserBean> imple
 		}		
 		if(null == userBean.getStatus())
 		{
-			userBean.setStatus(UserStatus.NEW.toString());
+			userBean.setStatus(UserStatus.NEW);
 		}		
 		partyEntityManager.setDefaultValues(userBean.getParty());
 		super.setDefaultValues(userBean);

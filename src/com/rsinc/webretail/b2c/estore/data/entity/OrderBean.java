@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.rsinc.webretail.b2c.estore.data.entity.enums.OrderStatus;
+
 /**
  * @author Roshan Titus
  *
@@ -26,7 +28,7 @@ import javax.persistence.TemporalType;
 @Access(AccessType.PROPERTY)
 @NamedQueries({@NamedQuery(name="findOrdersByStatus", query="from OrderBean orderBean where orderBean.orderStatus IN :params"), 
 	@NamedQuery(name="findOrderCountByStatus", query="select count(orderBean) from OrderBean orderBean where orderBean.orderStatus IN :params"), })
-@Table(name="ORDER")
+@Table(name="order")
 public class OrderBean extends BaseBean{
 
 	/**
@@ -35,7 +37,7 @@ public class OrderBean extends BaseBean{
 	private static final long serialVersionUID = -7738171511465403764L;
 
 	private Calendar orderDate;
-	private String orderStatus;
+	private OrderStatus orderStatus;
 	private AddressBean billingAddress;
 	private AddressBean deliveryAddress;
 	private PaymentBean payment;
@@ -65,12 +67,12 @@ public class OrderBean extends BaseBean{
 	}
 
 	@Column(name = "order_status")	
-	public String getOrderStatus() {
+	public OrderStatus getOrderStatus() {
 		return orderStatus;
 	}
 
 
-	public void setOrderStatus(String orderStatus) {
+	public void setOrderStatus(OrderStatus orderStatus) {
 		this.orderStatus = orderStatus;
 	}
 
@@ -96,6 +98,46 @@ public class OrderBean extends BaseBean{
 
 	public void setDeliveryAddress(AddressBean deliveryAddress) {
 		this.deliveryAddress = deliveryAddress;
+	}
+
+	public PaymentBean getPayment() {
+		return payment;
+	}
+
+	public void setPayment(PaymentBean payment) {
+		this.payment = payment;
+	}
+
+	public ShipmentBean getShipment() {
+		return shipment;
+	}
+
+	public void setShipment(ShipmentBean shipment) {
+		this.shipment = shipment;
+	}
+
+	public DeliveryBean getDelivery() {
+		return delivery;
+	}
+
+	public void setDelivery(DeliveryBean delivery) {
+		this.delivery = delivery;
+	}
+
+	public UserBean getUser() {
+		return user;
+	}
+
+	public void setUser(UserBean user) {
+		this.user = user;
+	}
+
+	public CouponBean getCoupon() {
+		return coupon;
+	}
+
+	public void setCoupon(CouponBean coupon) {
+		this.coupon = coupon;
 	}
 
 }

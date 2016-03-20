@@ -19,40 +19,46 @@ import javax.persistence.Table;
 @Entity
 @Access(AccessType.PROPERTY)
 //@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
-@Table(name="shipment_Item")
-public class ShipmentItemBean extends BaseBean {
+@Table(name="user_preference")
+public class UserPreferenceBean extends PreferenceBean{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5502224558121810096L;
+	private static final long serialVersionUID = 8944650041052087178L;
+	private UserBean user;
+	private PreferenceBean preference;
 	
-	private OrderLineItemBean item;
-
-	public ShipmentItemBean() {
+	public UserPreferenceBean() {
 		super();
 		// TODO initialize object
 	}
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	@Column(name = "shipment_Item_id")
-	public Long getShipmentItemId() {
+	@Column(name = "user_preference_id")
+	public Long getUserPreferenceId() {
 		return id;
 	}	
 	
-	public void setShipmentItemId(Long id) {
+	public void setUserPreferenceId(Long id) {
 		this.id = id;
 	}	
 	
-	public OrderLineItemBean getItem() {
-		return item;
+	public UserBean getUser() {
+		return user;
 	}
 
-	public void setItem(OrderLineItemBean item) {
-		this.item = item;
+	public void setUser(UserBean user) {
+		this.user = user;
 	}
-	
-	
+
+	public PreferenceBean getPreference() {
+		return preference;
+	}
+
+	public void setPreference(PreferenceBean preference) {
+		this.preference = preference;
+	}
 
 }

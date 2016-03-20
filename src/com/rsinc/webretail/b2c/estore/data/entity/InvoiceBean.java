@@ -5,10 +5,26 @@ package com.rsinc.webretail.b2c.estore.data.entity;
 
 import java.util.Date;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import com.rsinc.webretail.b2c.estore.data.entity.enums.InvoiceStatus;
+
 /**
  * @author Roshan Titus
  *
  */
+@Entity
+@Access(AccessType.PROPERTY)
+//@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
+@Table(name="invoice")
 public class InvoiceBean extends BaseBean {
 
 	/**
@@ -18,12 +34,50 @@ public class InvoiceBean extends BaseBean {
 
 
 	private OrderBean order;
+	
+	@NotNull
 	private Date invoiceDate;
-	private String status;
+	private InvoiceStatus status;
 
 	public InvoiceBean() {
 		super();
 		// TODO initialize object
+	}
+
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Column(name = "invoice_id")
+	public Long getInvoiceId() {
+		return id;
+	}	
+	
+	public void setInvoiceId(Long id) {
+		this.id = id;
+	}	
+	
+	public OrderBean getOrder() {
+		return order;
+	}
+
+	public void setOrder(OrderBean order) {
+		this.order = order;
+	}
+
+	@Column(name = "invoice_date")
+	public Date getInvoiceDate() {
+		return invoiceDate;
+	}
+
+	public void setInvoiceDate(Date invoiceDate) {
+		this.invoiceDate = invoiceDate;
+	}
+
+	public InvoiceStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(InvoiceStatus status) {
+		this.status = status;
 	}
 
 }

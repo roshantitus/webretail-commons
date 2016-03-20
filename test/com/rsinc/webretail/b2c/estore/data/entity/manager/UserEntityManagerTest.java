@@ -196,7 +196,7 @@ public class UserEntityManagerTest {
 			assertNotNull(partyAddressBeanFromDB);
 			
 			//Update the fields
-			userBeanFromDB.setStatus(UserStatus.ACTIVE.toString());
+			userBeanFromDB.setStatus(UserStatus.ACTIVE);
 			userBeanFromDB.getParty().setEmail(PARTY_EMAIL_ID_NEW);
 			userBeanFromDB.getParty().getPartyAddress().setState(PARTY_ADDRESS_STATE_NEW);
 			userEntityManager.update(userBeanFromDB);

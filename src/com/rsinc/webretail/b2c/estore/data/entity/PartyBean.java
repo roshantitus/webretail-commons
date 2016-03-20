@@ -15,6 +15,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import com.rsinc.webretail.b2c.estore.data.entity.enums.PartyType;
 
 /**
  * @author Roshan Titus 
@@ -23,7 +29,7 @@ import javax.persistence.Table;
 @Entity
 @Access(AccessType.PROPERTY)
 //@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
-@Table(name="PARTY")
+@Table(name="party")
 public class PartyBean extends BaseBean {
 
 	/**
@@ -31,10 +37,18 @@ public class PartyBean extends BaseBean {
 	 */
 	private static final long serialVersionUID = 6462474650349080734L;
 
-	private String partyType;
+	@NotNull
+	private PartyType partyType;
+	
+	@NotEmpty
 	private String name;
+	
+	@NotEmpty @Email	
 	private String email;
+	
 	private AddressBean partyAddress;
+	
+	private String websiteURL;
 	
 	/**
 	 * 
@@ -66,7 +80,7 @@ public class PartyBean extends BaseBean {
 	}
 
 	@OneToOne(optional=true, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="ADDRESS_ID", unique=true, nullable=true, updatable=true)		
+    @JoinColumn(name="address_id", unique=true, nullable=true, updatable=true)		
 	public AddressBean getPartyAddress() {
 		return partyAddress;
 	}
@@ -75,16 +89,17 @@ public class PartyBean extends BaseBean {
 		this.partyAddress = partyAddress;
 	}
 	
-	public String getPartyType() {
+	@Column(name = "party_type")
+	public PartyType getPartyType() {
 		return partyType;
 	}
 
 
-	public void setPartyType(String partyType) {
+	public void setPartyType(PartyType partyType) {
 		this.partyType = partyType;
 	}
 
-
+	@Column(name = "name")
 	public String getName() {
 		return name;
 	}
@@ -92,6 +107,16 @@ public class PartyBean extends BaseBean {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Column(name = "website_url")
+	public String getWebsiteURL() {
+		return websiteURL;
+	}
+
+
+	public void setWebsiteURL(String websiteURL) {
+		this.websiteURL = websiteURL;
 	}	
 	
 	
