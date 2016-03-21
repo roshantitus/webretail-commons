@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -119,6 +120,7 @@ public class ProductBean  extends BaseBean {
 		this.sortOrder = sortOrder;
 	}
 
+	@OneToMany(mappedBy="product", fetch = FetchType.EAGER)
 	public List<PoductImageBean> getProductImages() {
 		return productImages;
 	}
@@ -127,6 +129,7 @@ public class ProductBean  extends BaseBean {
 		this.productImages = productImages;
 	}
 
+	@OneToMany(mappedBy="product", fetch = FetchType.EAGER)
 	public List<ProductAttributeBean> getProductAttributes() {
 		return productAttributes;
 	}
@@ -135,6 +138,7 @@ public class ProductBean  extends BaseBean {
 		this.productAttributes = productAttributes;
 	}
 
+	@OneToMany(mappedBy="product", fetch = FetchType.EAGER)
 	public List<ProductReviewBean> getReviews() {
 		return reviews;
 	}

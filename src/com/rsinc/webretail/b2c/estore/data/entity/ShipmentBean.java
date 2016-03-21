@@ -10,9 +10,13 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.rsinc.webretail.b2c.estore.data.entity.enums.ShippingType;
@@ -32,6 +36,8 @@ public class ShipmentBean extends BaseBean {
 	 */
 	private static final long serialVersionUID = 5540254897667783185L;
 	
+	private OrderBean order;
+	
 	private Date shippingDate;
 
 	private Integer shipmentTrackingNo;
@@ -46,7 +52,7 @@ public class ShipmentBean extends BaseBean {
 	
 	private InvoiceBean invoice;
 	
-	List<ShipmentItemBean> shipmentItems;
+	private List<ShipmentItemBean> shipmentItems;
 	
 	private AddressBean shippingAddress;
 	
@@ -153,5 +159,16 @@ public class ShipmentBean extends BaseBean {
 	public void setTotalShipmenWeight(Double totalShipmenWeight) {
 		this.totalShipmenWeight = totalShipmenWeight;
 	}
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="order_id", unique=true, nullable=false, updatable=true)	
+	public OrderBean getOrder() {
+		return order;
+	}
+	public void setOrder(OrderBean order) {
+		this.order = order;
+	}	
+	
+	
 
 }

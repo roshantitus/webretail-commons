@@ -7,9 +7,12 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -27,7 +30,6 @@ public class ProductReviewBean extends ReviewBean {
 	 */
 	private static final long serialVersionUID = -5330290587820598882L;
 	
-	private ReviewBean review;
 	private ProductBean product;
 
 	public ProductReviewBean() {
@@ -45,15 +47,9 @@ public class ProductReviewBean extends ReviewBean {
 	public void setProductReviewId(Long id) {
 		this.id = id;
 	}	
-	
-	public ReviewBean getReview() {
-		return review;
-	}
 
-	public void setReview(ReviewBean review) {
-		this.review = review;
-	}
-
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="product_id", unique=true, nullable=false, updatable=true)			
 	public ProductBean getProduct() {
 		return product;
 	}

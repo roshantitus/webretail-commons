@@ -5,11 +5,16 @@ package com.rsinc.webretail.b2c.estore.data.entity;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -28,7 +33,6 @@ public class PoductImageBean extends ImageBean {
 	private static final long serialVersionUID = 6979969065456679073L;
 	
 	private ProductBean product;
-	private ImageBean image;	
 	private Integer sortOrder;		
 
 	public PoductImageBean() {
@@ -47,21 +51,14 @@ public class PoductImageBean extends ImageBean {
 		this.id = id;
 	}	
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="product_id", unique=true, nullable=false, updatable=true)		
 	public ProductBean getProduct() {
 		return product;
 	}
 
 	public void setProduct(ProductBean product) {
 		this.product = product;
-	}
-
-	public ImageBean getImage() {
-		return image;
-	}
-
-
-	public void setImage(ImageBean image) {
-		this.image = image;
 	}
 
 	@Column(name = "sort_order")
@@ -72,6 +69,5 @@ public class PoductImageBean extends ImageBean {
 	public void setSortOrder(Integer sortOrder) {
 		this.sortOrder = sortOrder;
 	}
-	
 		
 }

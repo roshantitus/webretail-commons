@@ -4,7 +4,10 @@
 package com.rsinc.webretail.b2c.estore.data.entity;
 
 import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 
 /**
  * @author Roshan Titus
@@ -39,6 +42,8 @@ public abstract class ReviewBean extends BaseBean {
 		this.comments = comments;
 	}
 
+	@OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="reviewed_by", unique=true, nullable=false, updatable=true)		
 	public UserBean getReviewedby() {
 		return reviewedby;
 	}

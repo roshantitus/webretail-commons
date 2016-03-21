@@ -33,7 +33,7 @@ public class InvoiceBean extends BaseBean {
 	private static final long serialVersionUID = 2654978215629683092L;
 
 
-	private OrderBean order;
+	private PaymentBean payment;
 	
 	@NotNull
 	private Date invoiceDate;
@@ -54,14 +54,6 @@ public class InvoiceBean extends BaseBean {
 	public void setInvoiceId(Long id) {
 		this.id = id;
 	}	
-	
-	public OrderBean getOrder() {
-		return order;
-	}
-
-	public void setOrder(OrderBean order) {
-		this.order = order;
-	}
 
 	@Column(name = "invoice_date")
 	public Date getInvoiceDate() {
@@ -80,4 +72,13 @@ public class InvoiceBean extends BaseBean {
 		this.status = status;
 	}
 
+	public PaymentBean getPayment() {
+		return payment;
+	}
+
+	public void setPayment(PaymentBean payment) {
+		this.payment = payment;
+	}
+
+	
 }

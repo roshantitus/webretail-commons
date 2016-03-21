@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -84,8 +85,7 @@ public class UserBean extends BaseBean {
 		this.party = party;
 	}
 
-	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="user_id", unique=true, nullable=false, updatable=true)		
+	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)	
 	public AuthenticationBean getAuthentication() {
 		return authentication;
 	}
@@ -112,6 +112,7 @@ public class UserBean extends BaseBean {
 		this.localeCode = localeCode;
 	}
 
+	@OneToMany(mappedBy="user", fetch = FetchType.EAGER)
 	public List<RoleBean> getRoles() {
 		return roles;
 	}
@@ -121,7 +122,7 @@ public class UserBean extends BaseBean {
 	}
 
 	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="address_id", unique=true, nullable=false, updatable=true)	
+    @JoinColumn(name="billing_address_id", unique=true, nullable=true, updatable=true)	
 	public AddressBean getBillingAddress() {
 		return billingAddress;
 	}
@@ -131,7 +132,7 @@ public class UserBean extends BaseBean {
 	}
 
 	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="address_id", unique=true, nullable=false, updatable=true)	
+    @JoinColumn(name="delivery_address_id", unique=true, nullable=true, updatable=true)	
 	public AddressBean getDeliveryAddress() {
 		return deliveryAddress;
 	}
@@ -159,7 +160,7 @@ public class UserBean extends BaseBean {
 	}
 
 	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="user_image_id", unique=true, nullable=false, updatable=true)		
+    @JoinColumn(name="user_image_id", unique=true, nullable=true, updatable=true)		
 	public UserImageBean getProfilePicture() {
 		return profilePicture;
 	}

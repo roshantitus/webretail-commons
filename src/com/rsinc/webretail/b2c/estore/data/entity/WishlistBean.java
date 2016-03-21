@@ -9,9 +9,13 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -48,6 +52,7 @@ public class WishlistBean extends BaseBean {
 		this.id = id;
 	}	
 	
+	@OneToMany(mappedBy="wishlist", fetch = FetchType.EAGER)	
 	public List<WishlistItemBean> getWishlistItems() {
 		return wishlistItems;
 	}
@@ -56,6 +61,8 @@ public class WishlistBean extends BaseBean {
 		this.wishlistItems = wishlistItems;
 	}
 
+	@OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id", unique=true, nullable=false, updatable=true)	
 	public UserBean getUser() {
 		return user;
 	}

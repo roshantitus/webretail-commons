@@ -4,16 +4,22 @@
 package com.rsinc.webretail.b2c.estore.data.entity;
 
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -45,6 +51,7 @@ public class OrderBean extends BaseBean{
 	private DeliveryBean delivery;
 	private UserBean user;
 	private CouponBean coupon;
+	private List<OrderLineItemBean> items;
 	
 	/**
 	 * @return
@@ -56,6 +63,13 @@ public class OrderBean extends BaseBean{
 		return id;
 	}
 
+	/**
+	 * @param orderId
+	 */
+	public void setOrderId(Long orderId) {
+		this.id = orderId;
+		
+	}
 	@Column(name = "order_date")	
 	@Temporal(TemporalType.DATE)	
 	public Calendar getOrderDate() {
@@ -71,19 +85,12 @@ public class OrderBean extends BaseBean{
 		return orderStatus;
 	}
 
-
 	public void setOrderStatus(OrderStatus orderStatus) {
 		this.orderStatus = orderStatus;
 	}
 
-	/**
-	 * @param orderId
-	 */
-	public void setOrderId(Long orderId) {
-		this.id = orderId;
-		
-	}
-
+	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="billing_address_id", unique=true, nullable=true, updatable=true)	
 	public AddressBean getBillingAddress() {
 		return billingAddress;
 	}
@@ -92,6 +99,8 @@ public class OrderBean extends BaseBean{
 		this.billingAddress = billingAddress;
 	}
 
+	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="delivery_address_id", unique=true, nullable=true, updatable=true)		
 	public AddressBean getDeliveryAddress() {
 		return deliveryAddress;
 	}
@@ -100,6 +109,8 @@ public class OrderBean extends BaseBean{
 		this.deliveryAddress = deliveryAddress;
 	}
 
+	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="payment_id", unique=true, nullable=true, updatable=true)		
 	public PaymentBean getPayment() {
 		return payment;
 	}
@@ -108,6 +119,8 @@ public class OrderBean extends BaseBean{
 		this.payment = payment;
 	}
 
+	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="shipment_id", unique=true, nullable=true, updatable=true)	
 	public ShipmentBean getShipment() {
 		return shipment;
 	}
@@ -116,6 +129,8 @@ public class OrderBean extends BaseBean{
 		this.shipment = shipment;
 	}
 
+	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="delivery_id", unique=true, nullable=true, updatable=true)		
 	public DeliveryBean getDelivery() {
 		return delivery;
 	}
@@ -124,6 +139,8 @@ public class OrderBean extends BaseBean{
 		this.delivery = delivery;
 	}
 
+	@OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id", unique=true, nullable=false, updatable=true)		
 	public UserBean getUser() {
 		return user;
 	}
@@ -132,6 +149,8 @@ public class OrderBean extends BaseBean{
 		this.user = user;
 	}
 
+	@OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="coupon_id", unique=true, nullable=false, updatable=true)		
 	public CouponBean getCoupon() {
 		return coupon;
 	}
@@ -140,4 +159,14 @@ public class OrderBean extends BaseBean{
 		this.coupon = coupon;
 	}
 
+	@OneToMany(mappedBy="order", fetch = FetchType.EAGER)	
+	public List<OrderLineItemBean> getItems() {
+		return items;
+	}
+
+	public void setItems(List<OrderLineItemBean> items) {
+		this.items = items;
+	}
+
+	
 }

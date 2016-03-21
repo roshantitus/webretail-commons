@@ -9,9 +9,13 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -28,6 +32,8 @@ public class DeliveryBean extends BaseBean {
 	 * 
 	 */
 	private static final long serialVersionUID = 4519314037779492477L;
+	
+	private OrderBean order;
 	
 	private String deliveryInstruction;
 
@@ -102,4 +108,14 @@ public class DeliveryBean extends BaseBean {
 		this.deliveryEstimate = deliveryEstimate;
 	}
 
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="order_id", unique=true, nullable=false, updatable=true)	
+	public OrderBean getOrder() {
+		return order;
+	}
+	public void setOrder(OrderBean order) {
+		this.order = order;
+	}	
+	
+	
 }

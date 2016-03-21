@@ -5,11 +5,15 @@ package com.rsinc.webretail.b2c.estore.data.entity;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -28,7 +32,8 @@ public class AuthenticationBean extends BaseBean {
 	 * 
 	 */
 	private static final long serialVersionUID = -2632290667245015904L;
-	private Long userId;
+	
+	private UserBean user;
 	
 	@NotEmpty
 	private String username;
@@ -53,11 +58,14 @@ public class AuthenticationBean extends BaseBean {
 		this.id = id;
 	}	
 	
-	public Long getUserId() {
-		return userId;
+	@OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id", unique=true, nullable=false, updatable=true)	
+	public UserBean getUser() {
+		return user;
 	}
-	public void setUserId(Long userId) {
-		this.userId = userId;
+
+	public void setUser(UserBean user) {
+		this.user = user;
 	}
 	
 	@Column(name = "username")
