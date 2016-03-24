@@ -23,6 +23,7 @@ import com.rsinc.webretail.b2c.estore.common.logging.Logger;
 import com.rsinc.webretail.b2c.estore.common.logging.LoggerFactory;
 import com.rsinc.webretail.b2c.estore.data.entity.AddressBean;
 import com.rsinc.webretail.b2c.estore.data.entity.PartyBean;
+import com.rsinc.webretail.b2c.estore.data.entity.PersonBean;
 import com.rsinc.webretail.b2c.estore.data.entity.UserBean;
 import com.rsinc.webretail.b2c.estore.data.entity.enums.UserStatus;
 
@@ -401,7 +402,7 @@ public class UserEntityManagerTest {
 	
 	private UserBean getUser() {
 		UserBean userBean = new UserBean();
-		PartyBean party = new PartyBean();
+		PartyBean party = new PersonBean();
 		party.setEmail(PARTY_EMAIL_ID);
 		AddressBean partyAddress = new AddressBean();
 		partyAddress.setState(PARTY_ADDRESS_STATE);
@@ -412,7 +413,7 @@ public class UserEntityManagerTest {
 	
 	private UserBean getUserWithoutPartyAddress() {
 		UserBean userBean = new UserBean();
-		PartyBean party = new PartyBean();
+		PartyBean party = new PersonBean();
 		party.setEmail(PARTY_EMAIL_ID);
 		userBean.setParty(party);
 		return userBean;

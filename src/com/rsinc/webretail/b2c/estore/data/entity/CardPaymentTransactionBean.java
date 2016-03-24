@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  */
 @MappedSuperclass
-public abstract class CardPaymentMethodBean extends PaymentMethodBean {
+public abstract class CardPaymentTransactionBean extends PaymentTransactionBean {
 
 	/**
 	 * 
@@ -32,7 +32,7 @@ public abstract class CardPaymentMethodBean extends PaymentMethodBean {
 	@NotEmpty
 	private String validToYear;
 	
-	public CardPaymentMethodBean() {
+	public CardPaymentTransactionBean() {
 		super();
 		// TODO initialize object
 	}	

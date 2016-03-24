@@ -52,6 +52,7 @@ public class OrderBean extends BaseBean{
 	private UserBean user;
 	private CouponBean coupon;
 	private List<OrderLineItemBean> items;
+	private InvoiceBean invoice;
 	
 	/**
 	 * @return
@@ -168,5 +169,13 @@ public class OrderBean extends BaseBean{
 		this.items = items;
 	}
 
-	
+	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="invoice_id", unique=true, nullable=true, updatable=true)		
+	public InvoiceBean getInvoice() {
+		return invoice;
+	}
+
+	public void setInvoice(InvoiceBean invoice) {
+		this.invoice = invoice;
+	}	
 }

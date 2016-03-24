@@ -86,8 +86,8 @@ public class CategoryBean extends BaseBean {
 		this.sortOrder = sortOrder;
 	}
 
-	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="parent_category_id", unique=false, nullable=true, updatable=true)
+	@OneToOne(optional=true, fetch = FetchType.EAGER)
+    @JoinColumn(name="parent_category_id", unique=false, nullable=true, updatable=false)
 	public CategoryBean getParentCategory() {
 		return parentCategory;
 	}

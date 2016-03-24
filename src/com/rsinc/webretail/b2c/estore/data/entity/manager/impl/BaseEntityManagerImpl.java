@@ -3,17 +3,25 @@
  */
 package com.rsinc.webretail.b2c.estore.data.entity.manager.impl;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
+import com.rsinc.webretail.b2c.estore.common.exception.application.FieldError;
+import com.rsinc.webretail.b2c.estore.common.exception.application.FieldValidationException;
 import com.rsinc.webretail.b2c.estore.common.exception.application.RecordAlreadyExistsException;
 import com.rsinc.webretail.b2c.estore.common.exception.application.RecordNotFoundException;
 import com.rsinc.webretail.b2c.estore.common.exception.application.ValidationException;
@@ -65,7 +73,7 @@ public abstract class BaseEntityManagerImpl <T extends BaseBean> implements Base
 	
 		if(null == baseBean.getCreatedBy())
 		{
-			baseBean.setCreatedBy(SecurityContextUtils.getLoggedInUserId());
+			baseBean.setCreatedBy(SecurityContextUtils.getLoggedInUser());
 		}
 		
 		if(null == baseBean.getCreatedDate())
@@ -85,7 +93,7 @@ public abstract class BaseEntityManagerImpl <T extends BaseBean> implements Base
 		
 		if(null == baseBean.getUpdatedBy())
 		{			
-			baseBean.setUpdatedBy(SecurityContextUtils.getLoggedInUserId());
+			baseBean.setUpdatedBy(SecurityContextUtils.getLoggedInUser());
 		}
 		
 		if(null == baseBean.getUpdatedDate())
@@ -105,8 +113,33 @@ public abstract class BaseEntityManagerImpl <T extends BaseBean> implements Base
 		{
 			throw new IllegalArgumentException("Id should be null for create"); 
 		}
+		//validate(baseBean);
 	}
 	
+	/**
+	 * @param baseBean
+	 */
+	private void validate(T baseBean) throws ValidationException{
+		
+        //Getting Validator instance with Annotations
+        ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
+        Validator validator = validatorFactory.getValidator();
+        
+        Set<ConstraintViolation<T>> validationErrors = validator.validate(baseBean);
+        
+        if(!validationErrors.isEmpty())
+        {
+        	List<FieldError> fieldErrors = new ArrayList<FieldError>();
+            for(ConstraintViolation<T> error : validationErrors)
+            {
+            	fieldErrors.add(new FieldError(String.valueOf(error.getPropertyPath()), error.getMessage()));                 
+            }
+            throw new FieldValidationException(fieldErrors);
+        }
+	}
+
+
+
 	@Override
 	public void validateForUpdate(T baseBean) throws ValidationException{
 		// TODO Auto-generated method stub
@@ -118,6 +151,7 @@ public abstract class BaseEntityManagerImpl <T extends BaseBean> implements Base
 		{
 			throw new IllegalArgumentException("Id cannot be null for update"); 
 		}		
+		//validate(baseBean);
 	}
 
 	@Override
@@ -131,6 +165,7 @@ public abstract class BaseEntityManagerImpl <T extends BaseBean> implements Base
 		{
 			throw new IllegalArgumentException("Id cannot be null for delete"); 
 		}			
+		//validate(baseBean);
 	}
 	
 	private void validateForId(Object id) throws ValidationException{
@@ -143,8 +178,8 @@ public abstract class BaseEntityManagerImpl <T extends BaseBean> implements Base
 	@Override
 	public T create(T baseBean)  throws PersistanceFailureSystemException, RecordAlreadyExistsException, ValidationException{
 		
+		setDefaultValues(baseBean);	
 		validateForCreate(baseBean);
-		setDefaultValues(baseBean);		
 		return getPersistanceDao().create(baseBean);
 	}
 

@@ -33,6 +33,7 @@ public class WishlistBean extends BaseBean {
 	 */
 	private static final long serialVersionUID = -5489433120758062534L;
 
+	private String name;
 	private UserBean user;
 	private List<WishlistItemBean> wishlistItems;
 
@@ -69,6 +70,15 @@ public class WishlistBean extends BaseBean {
 
 	public void setUser(UserBean user) {
 		this.user = user;
+	}
+
+	@Column(name = "name")
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	

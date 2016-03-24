@@ -32,8 +32,6 @@ public class RoleBean extends BaseBean {
 	 */
 	private static final long serialVersionUID = -3540932741514723040L;
 	
-	private UserBean user;
-	
 	@NotEmpty
 	private String roleCode;
 	
@@ -58,16 +56,6 @@ public class RoleBean extends BaseBean {
 	public void setRoleId(Long id) {
 		this.id = id;
 	}	
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="user_id", unique=true, nullable=false, updatable=true)	
-	public UserBean getUser() {
-		return user;
-	}
-
-	public void setUser(UserBean user) {
-		this.user = user;
-	}
 
 	@Column(name = "role_code")
 	public String getRoleCode() {

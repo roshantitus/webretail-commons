@@ -86,6 +86,7 @@ public class UserBean extends BaseBean {
 	}
 
 	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)	
+	@JoinColumn(name="user_authentication_id", unique=true, nullable=false, updatable=true)	
 	public AuthenticationBean getAuthentication() {
 		return authentication;
 	}
@@ -112,7 +113,8 @@ public class UserBean extends BaseBean {
 		this.localeCode = localeCode;
 	}
 
-	@OneToMany(mappedBy="user", fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name="role_id")
 	public List<RoleBean> getRoles() {
 		return roles;
 	}

@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -92,6 +94,8 @@ public class ShipmentBean extends BaseBean {
 		this.shipmentTrackingNo = shipmentTrackingNo;
 	}
 
+	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="shipping_company_id", unique=true, nullable=true, updatable=true)			
 	public ShippingCompanyBean getShippingCompany() {
 		return shippingCompany;
 	}
@@ -127,6 +131,8 @@ public class ShipmentBean extends BaseBean {
 		this.shipmentCharges = shipmentCharges;
 	}
 
+	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="invoice_id", unique=true, nullable=true, updatable=true)		
 	public InvoiceBean getInvoice() {
 		return invoice;
 	}
@@ -135,6 +141,7 @@ public class ShipmentBean extends BaseBean {
 		this.invoice = invoice;
 	}
 
+	@OneToMany(mappedBy="shipment", fetch = FetchType.EAGER)		
 	public List<ShipmentItemBean> getShipmentItems() {
 		return shipmentItems;
 	}
@@ -143,6 +150,8 @@ public class ShipmentBean extends BaseBean {
 		this.shipmentItems = shipmentItems;
 	}
 
+	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="shipping_address_id", unique=true, nullable=true, updatable=true)		
 	public AddressBean getShippingAddress() {
 		return shippingAddress;
 	}

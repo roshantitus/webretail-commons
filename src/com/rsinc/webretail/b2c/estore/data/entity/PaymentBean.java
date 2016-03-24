@@ -28,11 +28,9 @@ import javax.persistence.Table;
 @Table(name="payment")
 public class PaymentBean extends BaseBean {
 
-	private OrderBean order;	
-	private InvoiceBean invoice;
-	private Date paymentReceivedDate;
+	private OrderBean order;
 	private PaymentGatewayBean paymentGateway;
-	private PaymentMethodBean paymentMethod;
+	private PaymentTransactionBean paymentTransaction;
 	private Double paymentAmount;
 	
 	public PaymentBean() {
@@ -54,39 +52,16 @@ public class PaymentBean extends BaseBean {
 	
 	public void setPaymentId(Long id) {
 		this.id = id;
-	}	
-	
-	public InvoiceBean getInvoice() {
-		return invoice;
 	}
 
-	public void setInvoice(InvoiceBean invoice) {
-		this.invoice = invoice;
-	}
-
-	@Column(name = "payment_received_date")
-	public Date getPaymentReceivedDate() {
-		return paymentReceivedDate;
-	}
-
-	public void setPaymentReceivedDate(Date paymentReceivedDate) {
-		this.paymentReceivedDate = paymentReceivedDate;
-	}
-
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="payment_gateway_id", unique=true, nullable=false, updatable=true)		
 	public PaymentGatewayBean getPaymentGateway() {
 		return paymentGateway;
 	}
 
 	public void setPaymentGateway(PaymentGatewayBean paymentGateway) {
 		this.paymentGateway = paymentGateway;
-	}
-
-	public PaymentMethodBean getPaymentMethod() {
-		return paymentMethod;
-	}
-
-	public void setPaymentMethod(PaymentMethodBean paymentMethod) {
-		this.paymentMethod = paymentMethod;
 	}
 
 	@Column(name = "payment_amount")
@@ -103,8 +78,19 @@ public class PaymentBean extends BaseBean {
 	public OrderBean getOrder() {
 		return order;
 	}
+	
 	public void setOrder(OrderBean order) {
 		this.order = order;
+	}
+
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="payment_transaction_id", unique=true, nullable=false, updatable=true)			
+	public PaymentTransactionBean getPaymentTransaction() {
+		return paymentTransaction;
+	}
+
+	public void setPaymentTransaction(PaymentTransactionBean paymentTransaction) {
+		this.paymentTransaction = paymentTransaction;
 	}	
 	
 

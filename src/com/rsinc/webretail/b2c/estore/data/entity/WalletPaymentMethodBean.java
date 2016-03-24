@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * @author Roshan Titus
  *
@@ -23,7 +25,7 @@ import javax.persistence.Table;
 @Access(AccessType.PROPERTY)
 //@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
 @Table(name="wallet_payment_method")
-public class WalletPaymentMethodBean extends CardPaymentMethodBean {
+public class WalletPaymentMethodBean extends BaseBean {
 
 
 	/**
@@ -32,6 +34,18 @@ public class WalletPaymentMethodBean extends CardPaymentMethodBean {
 	private static final long serialVersionUID = -5567913119676968658L;
 
 	private UserBean user;
+	
+	@NotEmpty
+	private String cardNumber;
+	
+	@NotEmpty
+	private String cardType;
+	
+	@NotEmpty
+	private String validToMonth;
+	
+	@NotEmpty
+	private String validToYear;
 	
 	public WalletPaymentMethodBean() {
 		super();
@@ -59,5 +73,41 @@ public class WalletPaymentMethodBean extends CardPaymentMethodBean {
 		this.user = user;
 	}		
 	
+	
+	@Column(name = "card_number")
+	public String getCardNumber() {
+		return cardNumber;
+	}
+
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+
+	@Column(name = "card_type")
+	public String getCardType() {
+		return cardType;
+	}
+
+	public void setCardType(String cardType) {
+		this.cardType = cardType;
+	}
+
+	@Column(name = "valid_to_month")
+	public String getValidToMonth() {
+		return validToMonth;
+	}
+
+	public void setValidToMonth(String validToMonth) {
+		this.validToMonth = validToMonth;
+	}
+
+	@Column(name = "valid_to_year")
+	public String getValidToYear() {
+		return validToYear;
+	}
+
+	public void setValidToYear(String validToYear) {
+		this.validToYear = validToYear;
+	}
 	
 }

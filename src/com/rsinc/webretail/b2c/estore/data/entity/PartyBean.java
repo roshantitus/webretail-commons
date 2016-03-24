@@ -36,7 +36,7 @@ import com.rsinc.webretail.b2c.estore.data.entity.enums.PartyType;
 @Table(name="party")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="party_type", discriminatorType=DiscriminatorType.STRING)
-public class PartyBean extends BaseBean {
+public abstract class PartyBean extends BaseBean {
 
 	/**
 	 * 
@@ -95,7 +95,7 @@ public class PartyBean extends BaseBean {
 		this.partyAddress = partyAddress;
 	}
 	
-	@Column(name = "party_type")
+//	@Column(name = "party_type")
 	public PartyType getPartyType() {
 		return partyType;
 	}

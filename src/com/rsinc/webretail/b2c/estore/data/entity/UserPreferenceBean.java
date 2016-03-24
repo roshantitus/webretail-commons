@@ -7,9 +7,12 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -20,14 +23,13 @@ import javax.persistence.Table;
 @Access(AccessType.PROPERTY)
 //@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
 @Table(name="user_preference")
-public class UserPreferenceBean extends PreferenceBean{
+public class UserPreferenceBean extends PreferenceBean {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 8944650041052087178L;
 	private UserBean user;
-	private PreferenceBean preference;
 	
 	public UserPreferenceBean() {
 		super();
@@ -45,20 +47,14 @@ public class UserPreferenceBean extends PreferenceBean{
 		this.id = id;
 	}	
 	
+	@OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="user_id", unique=true, nullable=false, updatable=true)	
 	public UserBean getUser() {
 		return user;
 	}
 
 	public void setUser(UserBean user) {
 		this.user = user;
-	}
-
-	public PreferenceBean getPreference() {
-		return preference;
-	}
-
-	public void setPreference(PreferenceBean preference) {
-		this.preference = preference;
 	}
 
 }

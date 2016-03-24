@@ -3,10 +3,12 @@
  */
 package com.rsinc.webretail.b2c.estore.data.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -14,8 +16,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author Roshan Titus
  *
  */
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@MappedSuperclass
 public abstract class VenderBean extends BaseBean {
 
 	/**
@@ -49,7 +50,8 @@ public abstract class VenderBean extends BaseBean {
 	}
 
 
-
+	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="address_id", unique=true, nullable=true, updatable=true)	
 	public AddressBean getAddress() {
 		return address;
 	}

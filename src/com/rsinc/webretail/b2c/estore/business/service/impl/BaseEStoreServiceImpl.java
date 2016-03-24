@@ -238,13 +238,6 @@ public abstract class BaseEStoreServiceImpl implements EStoreService {
 			{
 				userBean = new UserBean();
 			}	
-
-			if(null == userBean.getParty())
-			{
-				userBean.setParty(new PartyBean());				
-			}
-			if(user.getEmail() != null)
-				userBean.getParty().setEmail(user.getEmail());
 		}
 		return userBean;
 	}

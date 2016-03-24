@@ -46,7 +46,7 @@ public class ProductBean  extends BaseBean {
 	private List<PoductImageBean> productImages;
 	private List<ProductAttributeBean> productAttributes;
 	private List<ProductReviewBean> reviews;
-	private List<ProductBean> relatedProducts;
+//	private List<ProductBean> relatedProducts;
 	
 	/**
 	 * @return
@@ -147,13 +147,13 @@ public class ProductBean  extends BaseBean {
 		this.reviews = reviews;
 	}
 
-	public List<ProductBean> getRelatedProducts() {
-		return relatedProducts;
-	}
-
-	public void setRelatedProducts(List<ProductBean> relatedProducts) {
-		this.relatedProducts = relatedProducts;
-	}
-	
+//	public List<ProductBean> getRelatedProducts() {
+//		return relatedProducts;
+//	}
+//
+//	public void setRelatedProducts(List<ProductBean> relatedProducts) {
+//		this.relatedProducts = relatedProducts;
+//	}
+//	
 		
 }
