@@ -15,7 +15,7 @@ import javax.persistence.Entity;
 @Entity
 @Access(AccessType.PROPERTY)
 //@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
-@DiscriminatorValue(value="CREDIT_CARD_PAYMENT")
+@DiscriminatorValue(value="CREDIT_CARD_TRANSACTION")
 public class CreditCardPaymentTransactionBean extends CardPaymentTransactionBean {
 
 	/**
@@ -25,6 +25,5 @@ public class CreditCardPaymentTransactionBean extends CardPaymentTransactionBean
 
 	public CreditCardPaymentTransactionBean() {
 		super();
-	}
-		
+	}		
 }

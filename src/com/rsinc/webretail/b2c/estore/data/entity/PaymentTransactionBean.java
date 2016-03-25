@@ -11,15 +11,17 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.rsinc.webretail.b2c.estore.data.entity.enums.TransactionStatus;
-import com.rsinc.webretail.b2c.estore.data.entity.enums.TransactionType;
 
 /**
  * @author Roshan Titus
@@ -30,17 +32,18 @@ import com.rsinc.webretail.b2c.estore.data.entity.enums.TransactionType;
 //@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
 @Table(name="payment_transaction")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="payment_method", discriminatorType=DiscriminatorType.STRING)
+@DiscriminatorColumn(name="transaction_type", discriminatorType=DiscriminatorType.STRING)
 public abstract class PaymentTransactionBean extends BaseBean {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5796135675390020937L;
-	private TransactionType transactionType;
 	private Date transactionDateAndTime;
 	private TransactionStatus status;
 	private Double transactionAmount; 
+	private Double transactionCharges;
+	private PaymentBean payment;
 	
 	public PaymentTransactionBean() {
 		super();
@@ -55,15 +58,6 @@ public abstract class PaymentTransactionBean extends BaseBean {
 
 	public void setPaymentTransactionId(Long id) {
 		this.id = id;
-	}		
-
-	@Column(name = "transaction_type")
-	public TransactionType getTransactionType() {
-		return transactionType;
-	}
-
-	public void setTransactionType(TransactionType transactionType) {
-		this.transactionType = transactionType;
 	}
 
 	@Column(name = "transaction_date_and_time")
@@ -92,6 +86,25 @@ public abstract class PaymentTransactionBean extends BaseBean {
 
 	public void setTransactionAmount(Double transactionAmount) {
 		this.transactionAmount = transactionAmount;
+	}
+
+	@Column(name = "transaction_charges")
+	public Double getTransactionCharges() {
+		return transactionCharges;
+	}
+
+	public void setTransactionCharges(Double transactionCharges) {
+		this.transactionCharges = transactionCharges;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="payment_id", unique=true, nullable=false, updatable=true)	
+	public PaymentBean getPayment() {
+		return payment;
+	}
+
+	public void setPayment(PaymentBean payment) {
+		this.payment = payment;
 	}		
-		
+
 }

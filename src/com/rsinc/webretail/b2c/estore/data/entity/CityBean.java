@@ -7,9 +7,12 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -19,41 +22,44 @@ import javax.persistence.Table;
 @Entity
 @Access(AccessType.PROPERTY)
 //@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
-@Table(name="locale_master")
-public class LocaleBean extends BaseBean {
+@Table(name="city_master")
+public class CityBean extends BaseBean {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -1612960104256612548L;
-    private String localeCode;
+	private static final long serialVersionUID = 4980440683434402521L;
+	private StateBean state;
     private String name;
     private String description;
-    private String languageCode;
-    private String countryCode;
     
-	public LocaleBean() {
-		super();
+	/**
+	 * 
+	 */
+	public CityBean() {
+		// TODO initialize object
 	}
+
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	@Column(name = "locale_id")
-	public Long getLocaleId() {
+	@Column(name = "city_id")
+	public Long getCityId() {
 		return id;
 	}	
 	
-	public void setLocaleId(Long id) {
+	public void setCityId(Long id) {
 		this.id = id;
 	}
 
-	@Column(name = "locale_code")
-	public String getLocaleCode() {
-		return localeCode;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="state_id", unique=true, nullable=false, updatable=true)		
+	public StateBean getState() {
+		return state;
 	}
 
-	public void setLocaleCode(String localeCode) {
-		this.localeCode = localeCode;
+	public void setState(StateBean state) {
+		this.state = state;
 	}
 
 	@Column(name = "name")
@@ -72,25 +78,5 @@ public class LocaleBean extends BaseBean {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	@Column(name = "language_code")
-	public String getLanguageCode() {
-		return languageCode;
-	}
-
-	public void setLanguageCode(String languageCode) {
-		this.languageCode = languageCode;
-	}
-
-	@Column(name = "country_code")	
-	public String getCountryCode() {
-		return countryCode;
-	}
-
-	public void setCountryCode(String countryCode) {
-		this.countryCode = countryCode;
-	}		
-	
-	
+	}	
 }

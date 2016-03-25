@@ -15,7 +15,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -113,8 +114,10 @@ public class UserBean extends BaseBean {
 		this.localeCode = localeCode;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name="role_id")
+	@ManyToMany
+	@JoinTable(name="user_role",
+	      joinColumns=@JoinColumn(name="user_id", referencedColumnName="user_id"),
+	      inverseJoinColumns=@JoinColumn(name="role_id", referencedColumnName="role_id"))
 	public List<RoleBean> getRoles() {
 		return roles;
 	}

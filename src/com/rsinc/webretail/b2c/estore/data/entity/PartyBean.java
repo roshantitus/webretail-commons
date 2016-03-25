@@ -42,9 +42,6 @@ public abstract class PartyBean extends BaseBean {
 	 * 
 	 */
 	private static final long serialVersionUID = 6462474650349080734L;
-
-	@NotNull
-	private PartyType partyType;
 	
 	@NotEmpty
 	private String name;
@@ -93,16 +90,6 @@ public abstract class PartyBean extends BaseBean {
 
 	public void setPartyAddress(AddressBean partyAddress) {
 		this.partyAddress = partyAddress;
-	}
-	
-//	@Column(name = "party_type")
-	public PartyType getPartyType() {
-		return partyType;
-	}
-
-
-	public void setPartyType(PartyType partyType) {
-		this.partyType = partyType;
 	}
 
 	@Column(name = "name")

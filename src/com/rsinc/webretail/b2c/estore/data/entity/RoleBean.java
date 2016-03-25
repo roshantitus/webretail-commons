@@ -3,16 +3,16 @@
  */
 package com.rsinc.webretail.b2c.estore.data.entity;
 
+import java.util.List;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -38,7 +38,7 @@ public class RoleBean extends BaseBean {
 	@NotEmpty
 	private String roleName;
 	private String roleDescription;
-
+	private List<UserBean> users;
 	/**
 	 * 
 	 */
@@ -82,6 +82,15 @@ public class RoleBean extends BaseBean {
 
 	public void setRoleDescription(String roleDescription) {
 		this.roleDescription = roleDescription;
+	}
+
+	@ManyToMany(mappedBy="roles")
+	public List<UserBean> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<UserBean> users) {
+		this.users = users;
 	}
 
 	

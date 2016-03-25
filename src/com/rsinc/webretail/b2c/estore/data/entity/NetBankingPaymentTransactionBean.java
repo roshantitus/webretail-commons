@@ -19,7 +19,7 @@ import javax.persistence.OneToOne;
 @Entity
 @Access(AccessType.PROPERTY)
 //@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
-@DiscriminatorValue(value="NETBANKING_PAYMENT")
+@DiscriminatorValue(value="NETBANKING_TRANSACTION")
 public class NetBankingPaymentTransactionBean extends PaymentTransactionBean {
 
 	/**
@@ -33,7 +33,7 @@ public class NetBankingPaymentTransactionBean extends PaymentTransactionBean {
 		super();
 		// TODO initialize object
 	}
-
+	
 	@OneToOne(optional=true, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     @JoinColumn(name="bank_id", unique=true, nullable=true, updatable=true)			
 	public BankBean getBank() {

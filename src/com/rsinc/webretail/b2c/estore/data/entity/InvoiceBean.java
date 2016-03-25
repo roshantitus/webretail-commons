@@ -7,6 +7,7 @@ import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -40,7 +41,8 @@ public class InvoiceBean extends BaseBean {
 	@NotNull
 	private Date invoiceDate;
 	private InvoiceStatus status;
-
+	private AddressBean billingAddress;
+	
 	public InvoiceBean() {
 		super();
 		// TODO initialize object
@@ -83,4 +85,13 @@ public class InvoiceBean extends BaseBean {
 		this.order = order;
 	}	
 	
+	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="billing_address_id", unique=true, nullable=true, updatable=true)	
+	public AddressBean getBillingAddress() {
+		return billingAddress;
+	}
+
+	public void setBillingAddress(AddressBean billingAddress) {
+		this.billingAddress = billingAddress;
+	}	
 }

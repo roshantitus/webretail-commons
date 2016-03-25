@@ -3,7 +3,7 @@
  */
 package com.rsinc.webretail.b2c.estore.data.entity;
 
-import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -14,7 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -30,7 +30,7 @@ public class PaymentBean extends BaseBean {
 
 	private OrderBean order;
 	private PaymentGatewayBean paymentGateway;
-	private PaymentTransactionBean paymentTransaction;
+	private List<PaymentTransactionBean> paymentTransactions;
 	private Double paymentAmount;
 	
 	public PaymentBean() {
@@ -83,15 +83,14 @@ public class PaymentBean extends BaseBean {
 		this.order = order;
 	}
 
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="payment_transaction_id", unique=true, nullable=false, updatable=true)			
-	public PaymentTransactionBean getPaymentTransaction() {
-		return paymentTransaction;
+	@OneToMany(mappedBy="payment", fetch = FetchType.EAGER)		
+	public List<PaymentTransactionBean> getPaymentTransactions() {
+		return paymentTransactions;
 	}
 
-	public void setPaymentTransaction(PaymentTransactionBean paymentTransaction) {
-		this.paymentTransaction = paymentTransaction;
-	}	
-	
+	public void setPaymentTransactions(
+			List<PaymentTransactionBean> paymentTransactions) {
+		this.paymentTransactions = paymentTransactions;
+	}
 
 }
