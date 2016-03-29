@@ -20,6 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.rsinc.webretail.b2c.estore.data.entity.enums.ShipmentStatus;
 import com.rsinc.webretail.b2c.estore.data.entity.enums.ShippingType;
 
 /**
@@ -39,15 +40,19 @@ public class ShipmentBean extends BaseBean {
 	
 	private OrderBean order;
 	
-	private Date shippingDate;
+	private UserBean recipient;	
+
+	private Date expectedArrivalDate;	
+	
+	private Date shippedTime;
+	
+	private Date deliveredTime;
 
 	private Integer shipmentTrackingNo;
 
 	private ShippingCompanyBean shippingCompany;
 	
 	private ShippingType shippingType;
-
-	private Date expectedArrivalDate;
 
 	private Double shipmentCharges;
 	
@@ -58,6 +63,8 @@ public class ShipmentBean extends BaseBean {
 	private AddressBean shippingAddress;
 	
 	private Double totalShipmenWeight;
+	
+	private ShipmentStatus status;
 
 	public ShipmentBean() {
 		super();
@@ -73,16 +80,8 @@ public class ShipmentBean extends BaseBean {
 	
 	public void setShipmentId(Long id) {
 		this.id = id;
-	}	
-	
-	@Column(name = "shipping_date")
-	public Date getShippingDate() {
-		return shippingDate;
-	}
+	}		
 
-	public void setShippingDate(Date shippingDate) {
-		this.shippingDate = shippingDate;
-	}
 
 	@Column(name = "shipment_tracking_no")
 	public Integer getShipmentTrackingNo() {
@@ -175,8 +174,43 @@ public class ShipmentBean extends BaseBean {
 	}
 	public void setOrder(OrderBean order) {
 		this.order = order;
+	}
+
+	@OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id", unique=false, nullable=false, updatable=true)		
+	public UserBean getRecipient() {
+		return recipient;
+	}
+
+	public void setRecipient(UserBean recipient) {
+		this.recipient = recipient;
+	}
+
+	@Column(name = "shipped_time")
+	public Date getShippedTime() {
+		return shippedTime;
+	}
+
+	public void setShippedTime(Date shippedTime) {
+		this.shippedTime = shippedTime;
+	}
+
+	@Column(name = "delivered_time")
+	public Date getDeliveredTime() {
+		return deliveredTime;
+	}
+
+	public void setDeliveredTime(Date deliveredTime) {
+		this.deliveredTime = deliveredTime;
+	}
+
+	@Column(name = "shipment_status")	
+	public ShipmentStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(ShipmentStatus status) {
+		this.status = status;
 	}	
-	
-	
 
 }

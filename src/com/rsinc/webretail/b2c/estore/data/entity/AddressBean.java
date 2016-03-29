@@ -49,6 +49,9 @@ public class AddressBean extends BaseBean {
 	@NotEmpty
 	private String country;
 	private String websiteURL;
+	private String homePhone;
+	private String officePhone;
+	private String mobileNo;
 	
 	/**
 	 * 
@@ -147,6 +150,36 @@ public class AddressBean extends BaseBean {
 
 	public void setWebsiteURL(String websiteURL) {
 		this.websiteURL = websiteURL;
+	}
+
+	@Column(name = "home_phone")
+	public String getHomePhone() {
+		return homePhone;
+	}
+
+
+	public void setHomePhone(String homePhone) {
+		this.homePhone = homePhone;
+	}
+
+	@Column(name = "office_phone")
+	public String getOfficePhone() {
+		return officePhone;
+	}
+
+
+	public void setOfficePhone(String officePhone) {
+		this.officePhone = officePhone;
+	}
+
+	@Column(name = "mobile_no")
+	public String getMobileNo() {
+		return mobileNo;
+	}
+
+
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
 	}	
 
 	

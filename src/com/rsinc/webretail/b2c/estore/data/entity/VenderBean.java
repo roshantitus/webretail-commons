@@ -26,7 +26,7 @@ public abstract class VenderBean extends BaseBean {
 	
 	@NotEmpty	
 	private String name;
-	
+	private String contactPerson;
 	private AddressBean address;	
 	
 
@@ -60,6 +60,15 @@ public abstract class VenderBean extends BaseBean {
 
 	public void setAddress(AddressBean address) {
 		this.address = address;
+	}
+
+	@Column(name = "contact_person_name")	
+	public String getContactPerson() {
+		return contactPerson;
+	}
+
+	public void setContactPerson(String contactPerson) {
+		this.contactPerson = contactPerson;
 	}
 
 	
