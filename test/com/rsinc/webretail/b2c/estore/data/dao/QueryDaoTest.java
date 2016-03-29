@@ -181,7 +181,6 @@ public class QueryDaoTest {
 	private UserBean getUser() {
 		UserBean userBean = new UserBean();
 		userBean.setStatus(UserStatus.NEW);
-		userBean.setLocaleCode(CommonConstants.DEFAULT_LOCALE);
 		userBean.setRewardPoints(CommonConstants.ZERO);
 		userBean.setCreatedBy(SecurityContextUtils.getLoggedInUser());
 		userBean.setCreatedDate(Calendar.getInstance());

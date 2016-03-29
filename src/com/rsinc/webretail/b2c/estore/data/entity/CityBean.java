@@ -53,7 +53,7 @@ public class CityBean extends BaseBean {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="state_id", unique=true, nullable=false, updatable=true)		
+	@JoinColumn(name="state_id", unique=false, nullable=false, updatable=true)		
 	public StateBean getState() {
 		return state;
 	}

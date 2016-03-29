@@ -47,10 +47,12 @@ public class UserBean extends BaseBean {
 	
 	@NotNull
 	private UserStatus status;
-	private String localeCode;
 	
 	@NotEmpty
-	private String currency;
+	private LocaleBean locale;
+	
+	@NotEmpty
+	private CurrencyBean currency;
 	
 	private List<RoleBean> roles;
 	private AddressBean billingAddress;
@@ -105,13 +107,14 @@ public class UserBean extends BaseBean {
 		this.status = status;
 	}
 
-	@Column(name = "locale_code")	
-	public String getLocaleCode() {
-		return localeCode;
+	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="locale_code", unique=false, nullable=false, updatable=true)
+	public LocaleBean getLocale() {
+		return locale;
 	}
 
-	public void setLocaleCode(String localeCode) {
-		this.localeCode = localeCode;
+	public void setLocale(LocaleBean locale) {
+		this.locale = locale;
 	}
 
 	@ManyToMany
@@ -122,12 +125,13 @@ public class UserBean extends BaseBean {
 		return roles;
 	}
 
+
 	public void setRoles(List<RoleBean> roles) {
 		this.roles = roles;
 	}
 
 	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="billing_address_id", unique=true, nullable=true, updatable=true)	
+    @JoinColumn(name="billing_address_id", unique=false, nullable=true, updatable=true)	
 	public AddressBean getBillingAddress() {
 		return billingAddress;
 	}
@@ -137,7 +141,7 @@ public class UserBean extends BaseBean {
 	}
 
 	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="delivery_address_id", unique=true, nullable=true, updatable=true)	
+    @JoinColumn(name="delivery_address_id", unique=false, nullable=true, updatable=true)	
 	public AddressBean getDeliveryAddress() {
 		return deliveryAddress;
 	}
@@ -174,12 +178,13 @@ public class UserBean extends BaseBean {
 		this.profilePicture = profilePicture;
 	}
 
-	@Column(name = "currency")
-	public String getCurrency() {
+	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="currency_code", unique=false, nullable=true, updatable=true)	
+	public CurrencyBean getCurrency() {
 		return currency;
 	}
 
-	public void setCurrency(String currency) {
+	public void setCurrency(CurrencyBean currency) {
 		this.currency = currency;
 	}
 

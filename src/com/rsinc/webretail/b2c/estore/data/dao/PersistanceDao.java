@@ -89,6 +89,16 @@ public interface PersistanceDao<T> {
 
 	/**
 	 * 
+	 * @param type
+	 * @param queryName
+	 * @param params
+	 * @return
+	 * @throws RetrievalFailureSystemException
+	 */
+	T find(Class<T> type, String queryName, Map<String, Object> params) throws RetrievalFailureSystemException;
+	
+	/**
+	 * 
 	 * @param queryName
 	 * @return
 	 * @throws RetrievalFailureSystemException

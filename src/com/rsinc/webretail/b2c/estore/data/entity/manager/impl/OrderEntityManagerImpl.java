@@ -30,7 +30,7 @@ public class OrderEntityManagerImpl extends BaseEntityManagerImpl<OrderBean> imp
 
 	
 	@Override
-	public void setDefaultValues(OrderBean orderBean) {
+	public void setDefaultValues(OrderBean orderBean)  throws ValidationException{
 		
 		if(null == orderBean.getOrderDate())
 		{		

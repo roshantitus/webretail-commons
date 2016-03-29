@@ -16,7 +16,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -95,7 +94,7 @@ public class ShipmentBean extends BaseBean {
 	}
 
 	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="shipping_company_id", unique=true, nullable=true, updatable=true)			
+    @JoinColumn(name="shipping_company_id", unique=false, nullable=true, updatable=true)			
 	public ShippingCompanyBean getShippingCompany() {
 		return shippingCompany;
 	}
@@ -151,7 +150,7 @@ public class ShipmentBean extends BaseBean {
 	}
 
 	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="shipping_address_id", unique=true, nullable=true, updatable=true)		
+    @JoinColumn(name="shipping_address_id", unique=false, nullable=true, updatable=true)		
 	public AddressBean getShippingAddress() {
 		return shippingAddress;
 	}

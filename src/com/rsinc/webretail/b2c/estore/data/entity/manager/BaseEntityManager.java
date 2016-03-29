@@ -30,7 +30,7 @@ public interface BaseEntityManager <T extends BaseBean> {
 	 * 
 	 * @param t
 	 */
-	void setDefaultValues(T t);
+	void setDefaultValues(T t) throws ValidationException;
 
 	/**
 	 * 
@@ -362,4 +362,14 @@ public interface BaseEntityManager <T extends BaseBean> {
 	 * @throws RetrievalFailureSystemException
 	 */
 	Long getTotalRecordCount(ResultLoadCriteria resultLoadCriteria) throws RetrievalFailureSystemException;
+
+	/**
+	 * @param type
+	 * @param queryName
+	 * @param params
+	 * @return
+	 * @throws RetrievalFailureSystemException
+	 */
+	T findByUK(Class<T> type, String queryName, Map<String, Object> params)
+			throws RetrievalFailureSystemException;
 }

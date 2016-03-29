@@ -3,6 +3,7 @@
  */
 package com.rsinc.webretail.b2c.estore.data.entity;
 
+import java.beans.Transient;
 import java.util.List;
 
 import javax.persistence.Access;
@@ -67,5 +68,16 @@ public class ShoppingCartBean extends BaseBean {
 		this.cartItems = cartItems;
 	}	
 	
-	
+	public Double totalAmount()
+	{
+		Double totalAmount = 0.0;
+		if(null != getCartItems())
+		{
+			for(ShoppingCartLineItemBean item : getCartItems())
+			{
+				totalAmount += item.itemTotal();
+			}
+		}
+		return totalAmount;
+	}		
 }

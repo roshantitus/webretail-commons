@@ -3,6 +3,7 @@
  */
 package com.rsinc.webretail.b2c.estore.data.entity;
 
+import java.beans.Transient;
 import java.util.Calendar;
 import java.util.List;
 
@@ -91,7 +92,7 @@ public class OrderBean extends BaseBean{
 	}
 
 	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="billing_address_id", unique=true, nullable=true, updatable=true)	
+    @JoinColumn(name="billing_address_id", unique=false, nullable=true, updatable=true)	
 	public AddressBean getBillingAddress() {
 		return billingAddress;
 	}
@@ -101,7 +102,7 @@ public class OrderBean extends BaseBean{
 	}
 
 	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="delivery_address_id", unique=true, nullable=true, updatable=true)		
+    @JoinColumn(name="delivery_address_id", unique=false, nullable=true, updatable=true)		
 	public AddressBean getDeliveryAddress() {
 		return deliveryAddress;
 	}
@@ -141,7 +142,7 @@ public class OrderBean extends BaseBean{
 	}
 
 	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id", unique=true, nullable=false, updatable=true)		
+    @JoinColumn(name="user_id", unique=false, nullable=false, updatable=true)		
 	public UserBean getUser() {
 		return user;
 	}
@@ -151,7 +152,7 @@ public class OrderBean extends BaseBean{
 	}
 
 	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="coupon_id", unique=true, nullable=false, updatable=true)		
+    @JoinColumn(name="coupon_id", unique=false, nullable=false, updatable=true)		
 	public CouponBean getCoupon() {
 		return coupon;
 	}
@@ -177,5 +178,19 @@ public class OrderBean extends BaseBean{
 
 	public void setInvoice(InvoiceBean invoice) {
 		this.invoice = invoice;
+	}	
+	
+	@Transient
+	public Double totalAmount()
+	{
+		Double totalAmount = 0.0;
+		if(null != getItems())
+		{
+			for(OrderLineItemBean item : getItems())
+			{
+				totalAmount += item.itemTotal();
+			}
+		}
+		return totalAmount;
 	}	
 }

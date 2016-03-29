@@ -35,7 +35,7 @@ public class ProductEntityManagerImpl extends BaseEntityManagerImpl<ProductBean>
 
 	
 	@Override
-	public void setDefaultValues(ProductBean baseBean) {
+	public void setDefaultValues(ProductBean baseBean)  throws ValidationException{
 		// TODO implement method functionality
 		super.setDefaultValues(baseBean);
 	}

@@ -43,7 +43,7 @@ public abstract class ReviewBean extends BaseBean {
 	}
 
 	@OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="reviewed_by", unique=true, nullable=false, updatable=true)		
+    @JoinColumn(name="reviewed_by", unique=false, nullable=false, updatable=true)		
 	public UserBean getReviewedby() {
 		return reviewedby;
 	}

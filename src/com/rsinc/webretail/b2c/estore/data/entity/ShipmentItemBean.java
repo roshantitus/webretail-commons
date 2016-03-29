@@ -53,7 +53,7 @@ public class ShipmentItemBean extends BaseBean {
 	}	
 	
 	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="order_line_item_id", unique=true, nullable=true, updatable=true)		
+    @JoinColumn(name="order_line_item_id", unique=false, nullable=true, updatable=true)		
 	public OrderLineItemBean getItem() {
 		return item;
 	}
@@ -63,7 +63,7 @@ public class ShipmentItemBean extends BaseBean {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="shipment_id", unique=true, nullable=false, updatable=true)		
+	@JoinColumn(name="shipment_id", unique=false, nullable=false, updatable=true)		
 	public ShipmentBean getShipment() {
 		return shipment;
 	}

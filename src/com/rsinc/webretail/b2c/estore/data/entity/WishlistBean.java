@@ -63,7 +63,7 @@ public class WishlistBean extends BaseBean {
 	}
 
 	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id", unique=true, nullable=false, updatable=true)	
+    @JoinColumn(name="user_id", unique=false, nullable=false, updatable=true)	
 	public UserBean getUser() {
 		return user;
 	}

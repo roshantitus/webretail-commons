@@ -51,7 +51,7 @@ public class WishlistItemBean extends BaseBean {
 	}	
 	
 	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="product_id", unique=true, nullable=false, updatable=true)		
+    @JoinColumn(name="product_id", unique=false, nullable=false, updatable=true)		
 	public ProductBean getProduct() {
 		return product;
 	}
@@ -61,7 +61,7 @@ public class WishlistItemBean extends BaseBean {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="wish_list_id", unique=true, nullable=false, updatable=true)		
+	@JoinColumn(name="wish_list_id", unique=false, nullable=false, updatable=true)		
 	public WishlistBean getWishlist() {
 		return wishlist;
 	}

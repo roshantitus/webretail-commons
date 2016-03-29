@@ -19,6 +19,7 @@ import com.rsinc.webretail.b2c.estore.common.paging.ResultLoadCriteria;
 import com.rsinc.webretail.b2c.estore.common.util.CommonConstants;
 import com.rsinc.webretail.b2c.estore.data.entity.UserBean;
 import com.rsinc.webretail.b2c.estore.data.entity.enums.UserStatus;
+import com.rsinc.webretail.b2c.estore.data.entity.manager.LocaleEntityManager;
 import com.rsinc.webretail.b2c.estore.data.entity.manager.PartyEntityManager;
 import com.rsinc.webretail.b2c.estore.data.entity.manager.UserEntityManager;
 
@@ -33,20 +34,26 @@ public class UserEntityManagerImpl extends BaseEntityManagerImpl<UserBean> imple
 	
 	@Inject
 	private PartyEntityManager partyEntityManager;
+	private LocaleEntityManager localeEntityManager;
 	
 	public UserEntityManagerImpl() {
 	}
 	
 	@Override
-	public void setDefaultValues(UserBean userBean) {
+	public void setDefaultValues(UserBean userBean)  throws ValidationException{
 	
 		if(null == userBean.getRewardPoints())
 		{
 			userBean.setRewardPoints(CommonConstants.ZERO);
 		}
-		if(null == userBean.getLocaleCode())
+		if(null == userBean.getLocale())
 		{
-			userBean.setLocaleCode(CommonConstants.DEFAULT_LOCALE);
+			try {
+				userBean.setLocale(localeEntityManager.findByLocaleCode(CommonConstants.DEFAULT_LOCALE));
+			} catch (RetrievalFailureSystemException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}	
 		if(null == userBean.getSubscribedForNewsLetterYN())
 		{

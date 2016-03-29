@@ -53,7 +53,7 @@ public class CountryBean extends BaseBean {
 		this.id = id;
 	}
 
-	@Column(name = "country_code")
+	@Column(name = "country_code", unique=true)
 	public String getCountryCode() {
 		return countryCode;
 	}

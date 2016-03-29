@@ -48,7 +48,7 @@ public class UserPreferenceBean extends PreferenceBean {
 	}	
 	
 	@OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="user_id", unique=true, nullable=false, updatable=true)	
+    @JoinColumn(name="user_id", unique=false, nullable=false, updatable=true)	
 	public UserBean getUser() {
 		return user;
 	}

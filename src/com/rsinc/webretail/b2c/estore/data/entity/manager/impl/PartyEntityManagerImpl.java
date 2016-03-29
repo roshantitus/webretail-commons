@@ -32,7 +32,7 @@ public class PartyEntityManagerImpl extends BaseEntityManagerImpl<PartyBean> imp
 	private AddressEntityManager addressEntityManager;
 	
 	@Override
-	public void setDefaultValues(PartyBean partyBean) {
+	public void setDefaultValues(PartyBean partyBean)  throws ValidationException{
 		
 		if(null != partyBean.getPartyAddress())
 		{

@@ -64,7 +64,6 @@ public class PersistanceDaoTest {
 	private UserBean getUser() {
 		UserBean userBean = new UserBean();
 		userBean.setStatus(UserStatus.getUserStatus("NEW"));
-		userBean.setLocaleCode("en_US");
 		userBean.setCreatedBy(SecurityContextUtils.getLoggedInUser());
 		userBean.setCreatedDate(Calendar.getInstance());
 		userBean.setUpdatedBy(SecurityContextUtils.getLoggedInUser());

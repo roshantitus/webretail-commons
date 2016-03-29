@@ -28,7 +28,7 @@ public class CategoryEntityManagerImpl extends BaseEntityManagerImpl<CategoryBea
 
 	
 	@Override
-	public void setDefaultValues(CategoryBean baseBean) {
+	public void setDefaultValues(CategoryBean baseBean)  throws ValidationException{
 		// TODO implement method functionality
 		super.setDefaultValues(baseBean);
 	}

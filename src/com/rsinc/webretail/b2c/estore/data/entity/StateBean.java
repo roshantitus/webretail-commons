@@ -55,7 +55,7 @@ public class StateBean extends BaseBean {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="country_id", unique=true, nullable=false, updatable=true)		
+	@JoinColumn(name="country_id", unique=false, nullable=false, updatable=true)		
 	public CountryBean getCountry() {
 		return country;
 	}
@@ -64,7 +64,7 @@ public class StateBean extends BaseBean {
 		this.country = country;
 	}
 
-	@Column(name = "state_code")
+	@Column(name = "state_code", unique=true)
 	public String getStateCode() {
 		return stateCode;
 	}

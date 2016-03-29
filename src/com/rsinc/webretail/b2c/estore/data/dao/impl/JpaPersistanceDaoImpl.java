@@ -11,6 +11,8 @@ import java.util.Set;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
@@ -486,6 +488,28 @@ public class JpaPersistanceDaoImpl<T> implements PersistanceDao<T> {
 		} catch (IllegalArgumentException | PersistenceException e) {
 			throw new RetrievalFailureSystemException(e);
 		}
+	}
+
+
+	/* (non-Javadoc)
+	 * @see com.rsinc.webretail.b2c.estore.data.dao.PersistanceDao#find(java.lang.Class, java.lang.String, java.util.Map)
+	 */
+	@Override
+	public T find(Class<T> type, String queryName, Map<String, Object> params)
+			throws RetrievalFailureSystemException {
+		
+		try {
+		    TypedQuery<T> query = getEntityManager().createQuery(queryName, type);
+			Set<Entry<String, Object>> rawParameters = params.entrySet();		
+			for(Entry<String, Object> entry : rawParameters)		
+			{		
+				query.setParameter(entry.getKey(), entry.getValue());		
+			}	
+			return query.getSingleResult();
+		    
+		} catch(NoResultException | NonUniqueResultException e) {
+			throw new RetrievalFailureSystemException(e);
+		}		
 	}
 
 

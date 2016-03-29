@@ -53,7 +53,7 @@ public class ProductAttributeBean extends BaseBean {
 	}		
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="product_id", unique=true, nullable=false, updatable=true)			
+	@JoinColumn(name="product_id", unique=false, nullable=false, updatable=true)			
 	public ProductBean getProduct() {
 		return product;
 	}

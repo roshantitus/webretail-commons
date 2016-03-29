@@ -86,7 +86,7 @@ public class InvoiceBean extends BaseBean {
 	}	
 	
 	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="billing_address_id", unique=true, nullable=true, updatable=true)	
+    @JoinColumn(name="billing_address_id", unique=false, nullable=true, updatable=true)	
 	public AddressBean getBillingAddress() {
 		return billingAddress;
 	}

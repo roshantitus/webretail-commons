@@ -55,7 +55,7 @@ public class PaymentBean extends BaseBean {
 	}
 
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="payment_gateway_id", unique=true, nullable=false, updatable=true)		
+	@JoinColumn(name="payment_gateway_id", unique=false, nullable=false, updatable=true)		
 	public PaymentGatewayBean getPaymentGateway() {
 		return paymentGateway;
 	}

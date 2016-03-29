@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -18,7 +20,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Access(AccessType.PROPERTY)
-//@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
+@NamedQueries({@NamedQuery(name="findLocaleByUK", query="from LocaleBean localeBean where localeBean.localeCode = :localeCode"), })
 @Table(name="locale_master")
 public class LocaleBean extends BaseBean {
 
@@ -47,7 +49,7 @@ public class LocaleBean extends BaseBean {
 		this.id = id;
 	}
 
-	@Column(name = "locale_code")
+	@Column(name = "locale_code", unique=true)
 	public String getLocaleCode() {
 		return localeCode;
 	}

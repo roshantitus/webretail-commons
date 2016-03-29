@@ -35,7 +35,7 @@ public class AddressEntityManagerImpl extends BaseEntityManagerImpl<AddressBean>
 	}
 	
 	@Override
-	public void setDefaultValues(AddressBean addressBean) {
+	public void setDefaultValues(AddressBean addressBean)  throws ValidationException{
 	
 		super.setDefaultValues(addressBean);
 	}

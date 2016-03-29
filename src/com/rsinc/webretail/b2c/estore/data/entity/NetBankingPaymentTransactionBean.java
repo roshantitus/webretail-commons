@@ -35,7 +35,7 @@ public class NetBankingPaymentTransactionBean extends PaymentTransactionBean {
 	}
 	
 	@OneToOne(optional=true, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="bank_id", unique=true, nullable=true, updatable=true)			
+    @JoinColumn(name="bank_id", unique=false, nullable=true, updatable=true)			
 	public BankBean getBank() {
 		return bank;
 	}

@@ -69,7 +69,7 @@ public abstract class BaseEntityManagerImpl <T extends BaseBean> implements Base
 	
 	
 	@Override
-	public void setDefaultValues(T baseBean) {
+	public void setDefaultValues(T baseBean)  throws ValidationException{
 	
 		if(null == baseBean.getCreatedBy())
 		{
@@ -235,6 +235,12 @@ public abstract class BaseEntityManagerImpl <T extends BaseBean> implements Base
 
 	@Override
 	public abstract T loadById(Object id) throws RetrievalFailureSystemException, RecordNotFoundException, ValidationException;
+	
+	@Override
+	public T findByUK(Class<T> type, String queryName, Map<String, Object> params) throws RetrievalFailureSystemException
+	{
+		return getPersistanceDao().find(type, queryName, params);
+	}
 
 	@Override
 	public abstract List<T> findAll() throws RetrievalFailureSystemException;

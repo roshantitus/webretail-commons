@@ -51,7 +51,7 @@ public abstract class VenderBean extends BaseBean {
 
 
 	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="address_id", unique=true, nullable=true, updatable=true)	
+    @JoinColumn(name="address_id", unique=false, nullable=true, updatable=true)	
 	public AddressBean getAddress() {
 		return address;
 	}

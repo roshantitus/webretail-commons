@@ -83,7 +83,7 @@ public abstract class PartyBean extends BaseBean {
 	}
 
 	@OneToOne(optional=true, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="address_id", unique=true, nullable=true, updatable=true)		
+    @JoinColumn(name="address_id", unique=false, nullable=true, updatable=true)		
 	public AddressBean getPartyAddress() {
 		return partyAddress;
 	}

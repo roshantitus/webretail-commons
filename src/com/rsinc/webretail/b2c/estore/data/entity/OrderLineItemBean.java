@@ -3,6 +3,8 @@
  */
 package com.rsinc.webretail.b2c.estore.data.entity;
 
+import java.beans.Transient;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
@@ -41,8 +43,6 @@ public class OrderLineItemBean extends BaseBean {
 	@NotNull
 	private Integer quantity;
 	
-	@NotNull
-	private Double price;
 	
 	public OrderLineItemBean() {
 		super();
@@ -60,7 +60,7 @@ public class OrderLineItemBean extends BaseBean {
 	}
 	
 	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="product_id", unique=true, nullable=false, updatable=true)		
+    @JoinColumn(name="product_id", unique=false, nullable=false, updatable=true)		
 	public ProductBean getProduct() {
 		return product;
 	}
@@ -76,16 +76,8 @@ public class OrderLineItemBean extends BaseBean {
 		this.quantity = quantity;
 	}
 	
-	@Column(name = "price")
-	public Double getPrice() {
-		return price;
-	}
-	public void setPrice(Double price) {
-		this.price = price;
-	}
-	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="order_id", unique=true, nullable=false, updatable=true)	
+	@JoinColumn(name="order_id", unique=false, nullable=false, updatable=true)	
 	public OrderBean getOrder() {
 		return order;
 	}
@@ -93,5 +85,9 @@ public class OrderLineItemBean extends BaseBean {
 		this.order = order;
 	}	
 	
-	
+	@Transient
+	public Double itemTotal()
+	{
+		return quantity * product.getUnitPrice();
+	}
 }

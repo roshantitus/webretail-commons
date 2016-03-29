@@ -98,7 +98,7 @@ public abstract class PaymentTransactionBean extends BaseBean {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="payment_id", unique=true, nullable=false, updatable=true)	
+	@JoinColumn(name="payment_id", unique=false, nullable=false, updatable=true)	
 	public PaymentBean getPayment() {
 		return payment;
 	}

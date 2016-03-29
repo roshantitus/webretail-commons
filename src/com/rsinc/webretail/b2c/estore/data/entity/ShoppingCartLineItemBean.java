@@ -3,6 +3,8 @@
  */
 package com.rsinc.webretail.b2c.estore.data.entity;
 
+import java.beans.Transient;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
@@ -39,10 +41,7 @@ public class ShoppingCartLineItemBean extends BaseBean {
 	private ProductBean product;
 	
 	@NotNull
-	private Integer quantity;
-	
-	@NotNull
-	private Double price;	
+	private Integer quantity;	
 
 	public ShoppingCartLineItemBean() {
 		super();
@@ -60,7 +59,7 @@ public class ShoppingCartLineItemBean extends BaseBean {
 	}	
 		
 	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="product_id", unique=true, nullable=false, updatable=true)	
+    @JoinColumn(name="product_id", unique=false, nullable=false, updatable=true)	
 	public ProductBean getProduct() {
 		return product;
 	}
@@ -75,17 +74,9 @@ public class ShoppingCartLineItemBean extends BaseBean {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-	
-	@Column(name = "price")
-	public Double getPrice() {
-		return price;
-	}
-	public void setPrice(Double price) {
-		this.price = price;
-	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="cart_id", unique=true, nullable=false, updatable=true)		
+	@JoinColumn(name="cart_id", unique=false, nullable=false, updatable=true)		
 	public ShoppingCartBean getCart() {
 		return cart;
 	}
@@ -94,5 +85,9 @@ public class ShoppingCartLineItemBean extends BaseBean {
 		this.cart = cart;
 	}		
 	
-	
+	@Transient
+	public Double itemTotal()
+	{
+		return quantity * product.getUnitPrice();
+	}	
 }
