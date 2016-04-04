@@ -17,8 +17,8 @@ import com.rsinc.webretail.b2c.estore.common.exception.application.ValidationExc
 import com.rsinc.webretail.b2c.estore.common.exception.system.PersistanceFailureSystemException;
 import com.rsinc.webretail.b2c.estore.common.exception.system.RetrievalFailureSystemException;
 import com.rsinc.webretail.b2c.estore.common.paging.ResultLoadCriteria;
-import com.rsinc.webretail.b2c.estore.data.entity.LocaleBean;
-import com.rsinc.webretail.b2c.estore.data.entity.manager.LocaleEntityManager;
+import com.rsinc.webretail.b2c.estore.data.entity.CurrencyBean;
+import com.rsinc.webretail.b2c.estore.data.entity.manager.CurrencyEntityManager;
 
 /**
  * @author Roshan Titus
@@ -26,50 +26,9 @@ import com.rsinc.webretail.b2c.estore.data.entity.manager.LocaleEntityManager;
  */
 @Component
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
-public class LocaleEntityManagerImpl extends BaseEntityManagerImpl<LocaleBean> implements LocaleEntityManager {
+public class CurrencyEntityManagerImpl extends BaseEntityManagerImpl<CurrencyBean>
+		implements CurrencyEntityManager {
 
-	/**
-	 * 
-	 */
-	public LocaleEntityManagerImpl() {
-		// TODO initialize object
-	}
-
-	/* (non-Javadoc)
-	 * @see com.rsinc.webretail.b2c.estore.data.entity.manager.BaseEntityManager#setDefaultValues(com.rsinc.webretail.b2c.estore.data.entity.BaseBean)
-	 */
-	@Override
-	public void setDefaultValues(LocaleBean t) {
-		// TODO implement method functionality
-
-	}
-
-	/* (non-Javadoc)
-	 * @see com.rsinc.webretail.b2c.estore.data.entity.manager.BaseEntityManager#validateForCreate(com.rsinc.webretail.b2c.estore.data.entity.BaseBean)
-	 */
-	@Override
-	public void validateForCreate(LocaleBean t) throws ValidationException {
-		// TODO implement method functionality
-
-	}
-
-	/* (non-Javadoc)
-	 * @see com.rsinc.webretail.b2c.estore.data.entity.manager.BaseEntityManager#validateForUpdate(com.rsinc.webretail.b2c.estore.data.entity.BaseBean)
-	 */
-	@Override
-	public void validateForUpdate(LocaleBean t) throws ValidationException {
-		// TODO implement method functionality
-
-	}
-
-	/* (non-Javadoc)
-	 * @see com.rsinc.webretail.b2c.estore.data.entity.manager.BaseEntityManager#validateForDelete(com.rsinc.webretail.b2c.estore.data.entity.BaseBean)
-	 */
-	@Override
-	public void validateForDelete(LocaleBean t) throws ValidationException {
-		// TODO implement method functionality
-
-	}
 
 	/* (non-Javadoc)
 	 * @see com.rsinc.webretail.b2c.estore.data.entity.manager.impl.BaseEntityManagerImpl#deleteById(java.lang.Object)
@@ -85,7 +44,7 @@ public class LocaleEntityManagerImpl extends BaseEntityManagerImpl<LocaleBean> i
 	 * @see com.rsinc.webretail.b2c.estore.data.entity.manager.impl.BaseEntityManagerImpl#loadById(java.lang.Object)
 	 */
 	@Override
-	public LocaleBean loadById(Object id)
+	public CurrencyBean loadById(Object id)
 			throws RetrievalFailureSystemException, RecordNotFoundException,
 			ValidationException {
 		// TODO implement method functionality
@@ -96,7 +55,7 @@ public class LocaleEntityManagerImpl extends BaseEntityManagerImpl<LocaleBean> i
 	 * @see com.rsinc.webretail.b2c.estore.data.entity.manager.impl.BaseEntityManagerImpl#findAll()
 	 */
 	@Override
-	public List<LocaleBean> findAll() throws RetrievalFailureSystemException {
+	public List<CurrencyBean> findAll() throws RetrievalFailureSystemException {
 		// TODO implement method functionality
 		return null;
 	}
@@ -105,7 +64,7 @@ public class LocaleEntityManagerImpl extends BaseEntityManagerImpl<LocaleBean> i
 	 * @see com.rsinc.webretail.b2c.estore.data.entity.manager.impl.BaseEntityManagerImpl#findAll(com.rsinc.webretail.b2c.estore.common.paging.ResultLoadCriteria)
 	 */
 	@Override
-	public List<LocaleBean> findAll(ResultLoadCriteria resultLoadCriteria)
+	public List<CurrencyBean> findAll(ResultLoadCriteria resultLoadCriteria)
 			throws RetrievalFailureSystemException {
 		// TODO implement method functionality
 		return null;
@@ -130,18 +89,16 @@ public class LocaleEntityManagerImpl extends BaseEntityManagerImpl<LocaleBean> i
 		return null;
 	}
 
+
 	/* (non-Javadoc)
-	 * @see com.rsinc.webretail.b2c.estore.data.entity.manager.LocaleEntityManager#findByLocaleCode(java.lang.String)
+	 * @see com.rsinc.webretail.b2c.estore.data.entity.manager.CurrencyEntityManager#findByCurrencyCode(java.lang.String)
 	 */
 	@Override
-	public LocaleBean findByLocaleCode(String localeCode)
+	public CurrencyBean findByCurrencyCode(String currencyCode)
 			throws RetrievalFailureSystemException {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("localeCode", localeCode);
-		return findByUK(LocaleBean.class, "findLocaleByUK", params);
+		params.put("currencyCode", currencyCode);
+		return findByUK(CurrencyBean.class, "findCurrencyByUK", params);
 	}
-
-
-
 }

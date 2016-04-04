@@ -21,6 +21,7 @@ public class CommonConstants {
 	public static final String COMMA_SYMBOL = ",";
     
 	public static final String DEFAULT_LOCALE = "en_US";
+	public static final String DEFAULT_CURRENCY = "INR";
 	
 	public static final Long SYSTEM_USER = new Long(-99);
 	public static final Integer BATCH_SIZE = 0;

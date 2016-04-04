@@ -5,12 +5,17 @@ package com.rsinc.webretail.b2c.estore.data.entity;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -37,17 +42,18 @@ public class AddressBean extends BaseBean {
 	
 	private String landmark;
 	
-	@NotEmpty
-	private String city;
+	@NotNull
+	private CityBean city;
 	
-	@NotEmpty
+	@NotNull
 	private String zipCode;
 	
-	@NotEmpty
-	private String state;
+	@NotNull
+	private StateBean state;
 	
-	@NotEmpty
-	private String country;
+	@NotNull
+	private CountryBean country;
+	
 	private String websiteURL;
 	private String homePhone;
 	private String officePhone;
@@ -102,14 +108,23 @@ public class AddressBean extends BaseBean {
 		this.landmark = landmark;
 	}
 
-	@Column(name = "city")
-	public String getCity() {
+	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="city_code", unique=false, nullable=false, updatable=true)		
+	public CityBean getCity() {
 		return city;
 	}
 
 
-	public void setCity(String city) {
+	public void setCity(CityBean city) {
 		this.city = city;
+		if(city != null)
+		{
+			setState(city.getState());
+			if(city.getState() != null)
+			{
+				setCountry(city.getState().getCountry());	
+			}
+		}	
 	}
 
 	@Column(name = "zip_code")
@@ -122,23 +137,25 @@ public class AddressBean extends BaseBean {
 		this.zipCode = zipCode;
 	}
 
-	@Column(name = "state")
-	public String getState() {
+	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="state_code", unique=false, nullable=false, updatable=true)		
+	public StateBean getState() {
 		return state;
 	}
 
 
-	public void setState(String state) {
+	public void setState(StateBean state) {
 		this.state = state;
 	}
 
-	@Column(name = "country")
-	public String getCountry() {
+	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="country_code", unique=false, nullable=false, updatable=true)			
+	public CountryBean getCountry() {
 		return country;
 	}
 
 
-	public void setCountry(String country) {
+	public void setCountry(CountryBean country) {
 		this.country = country;
 	}
 

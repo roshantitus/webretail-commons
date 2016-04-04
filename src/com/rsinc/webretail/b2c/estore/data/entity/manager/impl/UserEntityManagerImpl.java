@@ -19,6 +19,7 @@ import com.rsinc.webretail.b2c.estore.common.paging.ResultLoadCriteria;
 import com.rsinc.webretail.b2c.estore.common.util.CommonConstants;
 import com.rsinc.webretail.b2c.estore.data.entity.UserBean;
 import com.rsinc.webretail.b2c.estore.data.entity.enums.UserStatus;
+import com.rsinc.webretail.b2c.estore.data.entity.manager.AuthenticationEntityManager;
 import com.rsinc.webretail.b2c.estore.data.entity.manager.LocaleEntityManager;
 import com.rsinc.webretail.b2c.estore.data.entity.manager.PartyEntityManager;
 import com.rsinc.webretail.b2c.estore.data.entity.manager.UserEntityManager;
@@ -34,7 +35,12 @@ public class UserEntityManagerImpl extends BaseEntityManagerImpl<UserBean> imple
 	
 	@Inject
 	private PartyEntityManager partyEntityManager;
+	
+	@Inject
 	private LocaleEntityManager localeEntityManager;
+	
+	@Inject
+	private AuthenticationEntityManager authenticationEntityManager;	
 	
 	public UserEntityManagerImpl() {
 	}
@@ -63,7 +69,17 @@ public class UserEntityManagerImpl extends BaseEntityManagerImpl<UserBean> imple
 		{
 			userBean.setStatus(UserStatus.NEW);
 		}		
-		partyEntityManager.setDefaultValues(userBean.getParty());
+		
+		if(null != userBean.getParty())
+		{
+			partyEntityManager.setDefaultValues(userBean.getParty());
+		}
+		
+		if(null != userBean.getAuthentication())
+		{
+			authenticationEntityManager.setDefaultValues(userBean.getAuthentication());
+		}
+		
 		super.setDefaultValues(userBean);
 	}
 

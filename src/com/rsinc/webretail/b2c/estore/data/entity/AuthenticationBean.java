@@ -5,7 +5,6 @@ package com.rsinc.webretail.b2c.estore.data.entity;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -58,8 +57,7 @@ public class AuthenticationBean extends BaseBean {
 		this.id = id;
 	}	
 	
-	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id", unique=true, nullable=false, updatable=true)	
+	@OneToOne(mappedBy="authentication", fetch = FetchType.LAZY)		
 	public UserBean getUser() {
 		return user;
 	}
@@ -68,7 +66,7 @@ public class AuthenticationBean extends BaseBean {
 		this.user = user;
 	}
 	
-	@Column(name = "username")
+	@Column(name = "username", unique=true)
 	public String getUsername() {
 		return username;
 	}

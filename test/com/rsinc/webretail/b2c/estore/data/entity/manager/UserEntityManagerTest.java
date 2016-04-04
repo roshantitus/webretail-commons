@@ -21,7 +21,12 @@ import com.rsinc.webretail.b2c.estore.common.exception.application.RecordNotFoun
 import com.rsinc.webretail.b2c.estore.common.exception.system.RetrievalFailureSystemException;
 import com.rsinc.webretail.b2c.estore.common.logging.Logger;
 import com.rsinc.webretail.b2c.estore.common.logging.LoggerFactory;
+import com.rsinc.webretail.b2c.estore.common.util.CommonConstants;
 import com.rsinc.webretail.b2c.estore.data.entity.AddressBean;
+import com.rsinc.webretail.b2c.estore.data.entity.AuthenticationBean;
+import com.rsinc.webretail.b2c.estore.data.entity.CityBean;
+import com.rsinc.webretail.b2c.estore.data.entity.CurrencyBean;
+import com.rsinc.webretail.b2c.estore.data.entity.LocaleBean;
 import com.rsinc.webretail.b2c.estore.data.entity.PartyBean;
 import com.rsinc.webretail.b2c.estore.data.entity.PersonBean;
 import com.rsinc.webretail.b2c.estore.data.entity.UserBean;
@@ -44,7 +49,16 @@ public class UserEntityManagerTest {
 	 * 
 	 */
 	private static final String PARTY_EMAIL_ID = "roshantitus@gmail.com";
-	private static final String PARTY_EMAIL_ID_NEW = "susankoruthu@gmail.com";
+	private static final String PARTY_EMAIL_ID_NEW = "r6titus@gmail.com";
+	private static final String PERSON_EMAIL_ID = "roshantitus@yahoo.com";
+	private static final String PERSON_EMAIL_ID_NEW = "r6titus@redffmail.com";	
+	private static final String PERSON_ADDRESS_LINE1 = "House no: 21,";
+	private static final String PERSON_ADDRESS_LINE2 = "Baker Street";
+	private static final String PERSON_ZIPCODE = "686101";
+	private static final String PERSON_MOBILE_NO = "9447128035";
+	private static final String PERSON_CITY = "THIRUVANANTHAPURAM";
+	private static final String PERSON_NAME = "Rshan Titus";
+	private static final String PASSWORD = "****";
 	
 	private static Logger logger = LoggerFactory.getLogger(UserEntityManagerTest.class);
 	
@@ -56,6 +70,15 @@ public class UserEntityManagerTest {
 	
 	@Inject
 	private AddressEntityManager addressEntityManager;	
+	
+	@Inject
+	private CityEntityManager cityEntityManager;		
+		
+	@Inject
+	private LocaleEntityManager localeEntityManager;	
+	
+	@Inject
+	private CurrencyEntityManager currencyEntityManager;	
 	
 	@Test
 	//Execute method without transaction
@@ -184,9 +207,9 @@ public class UserEntityManagerTest {
 			UserBean userBeanFromDB = userEntityManager.loadById(userId);
 			assertNotNull(userBeanFromDB);
 			assertNotNull(userBeanFromDB.getParty());			
-			assertEquals(userBeanFromDB.getStatus(), UserStatus.NEW.toString());
+			assertEquals(userBeanFromDB.getStatus(), UserStatus.NEW);
 			assertEquals(userBeanFromDB.getParty().getEmail(), PARTY_EMAIL_ID);
-			assertEquals(userBeanFromDB.getParty().getPartyAddress().getState(), PARTY_ADDRESS_STATE);
+			//assertEquals(userBeanFromDB.getParty().getPartyAddress().getState(), PARTY_ADDRESS_STATE);
 			
 			Long partyId = userBeanFromDB.getParty().getPartyId();
 			PartyBean partyBeanFromDB = partyEntityManager.loadById(partyId);
@@ -199,16 +222,16 @@ public class UserEntityManagerTest {
 			//Update the fields
 			userBeanFromDB.setStatus(UserStatus.ACTIVE);
 			userBeanFromDB.getParty().setEmail(PARTY_EMAIL_ID_NEW);
-			userBeanFromDB.getParty().getPartyAddress().setState(PARTY_ADDRESS_STATE_NEW);
+			//userBeanFromDB.getParty().getPartyAddress().setState(PARTY_ADDRESS_STATE_NEW);
 			userEntityManager.update(userBeanFromDB);
 			
 			//fetch the user again and check status
 			UserBean userBeanFromDBAfterUpdate = userEntityManager.loadById(userId);
 			assertNotNull(userBeanFromDBAfterUpdate);
 			assertNotNull(userBeanFromDBAfterUpdate.getParty());
-			assertEquals(userBeanFromDBAfterUpdate.getStatus(), UserStatus.ACTIVE.toString());
+			assertEquals(userBeanFromDBAfterUpdate.getStatus(), UserStatus.ACTIVE);
 			assertEquals(userBeanFromDBAfterUpdate.getParty().getEmail(), PARTY_EMAIL_ID_NEW);
-			assertEquals(userBeanFromDBAfterUpdate.getParty().getPartyAddress().getState(), PARTY_ADDRESS_STATE_NEW);
+			//assertEquals(userBeanFromDBAfterUpdate.getParty().getPartyAddress().getState(), PARTY_ADDRESS_STATE_NEW);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -402,19 +425,82 @@ public class UserEntityManagerTest {
 	
 	private UserBean getUser() {
 		UserBean userBean = new UserBean();
+		AuthenticationBean authentication = new AuthenticationBean();
+		authentication.setUsername(PARTY_EMAIL_ID);
+		authentication.setPassword(PASSWORD);
+		userBean.setAuthentication(authentication);
+		userBean.setStatus(UserStatus.NEW);
+		setLocale(userBean);
+		setCurrency(userBean);
 		PartyBean party = new PersonBean();
+		party.setName(PERSON_NAME);
 		party.setEmail(PARTY_EMAIL_ID);
 		AddressBean partyAddress = new AddressBean();
-		partyAddress.setState(PARTY_ADDRESS_STATE);
+		partyAddress.setAddressLine1(PERSON_ADDRESS_LINE1);
+		partyAddress.setAddressLine2(PERSON_ADDRESS_LINE2);
+		partyAddress.setZipCode(PERSON_ZIPCODE);
+		setCity(partyAddress);
+		partyAddress.setMobileNo(PERSON_MOBILE_NO);
 		party.setPartyAddress(partyAddress);
 		userBean.setParty(party);
 		return userBean;
 	}
+
+	/**
+	 * @param userBean
+	 */
+	private void setCurrency(UserBean userBean) {
+		CurrencyBean currency = null;
+		try {
+			currency = currencyEntityManager.findByCurrencyCode(CommonConstants.DEFAULT_CURRENCY);
+		} catch (RetrievalFailureSystemException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		userBean.setCurrency(currency);
+		
+	}
+
+	/**
+	 * @param partyAddress
+	 */
+	private void setCity(AddressBean partyAddress) {
+		CityBean city = null;
+		try {
+			city = cityEntityManager.findByCityCode(PERSON_CITY);
+		} catch (RetrievalFailureSystemException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		partyAddress.setCity(city);
+	}
+
+	/**
+	 * @param userBean
+	 */
+	private void setLocale(UserBean userBean) {
+		LocaleBean locale = null;
+		try {
+			locale = localeEntityManager.findByLocaleCode(CommonConstants.DEFAULT_LOCALE);
+		} catch (RetrievalFailureSystemException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		userBean.setLocale(locale);
+	}
 	
 	private UserBean getUserWithoutPartyAddress() {
 		UserBean userBean = new UserBean();
+		AuthenticationBean authentication = new AuthenticationBean();
+		authentication.setUsername(PERSON_EMAIL_ID);
+		authentication.setPassword(PASSWORD);
+		userBean.setAuthentication(authentication);
+		userBean.setStatus(UserStatus.NEW);
+		setLocale(userBean);
+		setCurrency(userBean);
 		PartyBean party = new PersonBean();
-		party.setEmail(PARTY_EMAIL_ID);
+		party.setName(PERSON_NAME);
+		party.setEmail(PERSON_EMAIL_ID);		
 		userBean.setParty(party);
 		return userBean;
 	}

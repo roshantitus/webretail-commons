@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -21,7 +23,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Access(AccessType.PROPERTY)
-//@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
+@NamedQueries({@NamedQuery(name="findCityByUK", query="from CityBean cityBean where cityBean.cityCode = :cityCode"), })
 @Table(name="city_master")
 public class CityBean extends BaseBean {
 
@@ -30,6 +32,7 @@ public class CityBean extends BaseBean {
 	 */
 	private static final long serialVersionUID = 4980440683434402521L;
 	private StateBean state;
+	private String cityCode;
     private String name;
     private String description;
     
@@ -78,5 +81,17 @@ public class CityBean extends BaseBean {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	@Column(name = "city_code", unique=true)
+	public String getCityCode() {
+		return cityCode;
+	}
+
+
+	public void setCityCode(String cityCode) {
+		this.cityCode = cityCode;
 	}	
+	
+	
 }

@@ -499,7 +499,7 @@ public class JpaPersistanceDaoImpl<T> implements PersistanceDao<T> {
 			throws RetrievalFailureSystemException {
 		
 		try {
-		    TypedQuery<T> query = getEntityManager().createQuery(queryName, type);
+		    TypedQuery<T> query = getEntityManager().createNamedQuery(queryName, type);
 			Set<Entry<String, Object>> rawParameters = params.entrySet();		
 			for(Entry<String, Object> entry : rawParameters)		
 			{		

@@ -41,17 +41,19 @@ public class UserBean extends BaseBean {
 	 */
 	private static final long serialVersionUID = -438375391659822777L;
 	
-
+	@NotNull
 	private PartyBean party;
+	
+	@NotNull
 	private AuthenticationBean authentication;
 	
 	@NotNull
 	private UserStatus status;
 	
-	@NotEmpty
+	@NotNull
 	private LocaleBean locale;
 	
-	@NotEmpty
+	@NotNull
 	private CurrencyBean currency;
 	
 	private List<RoleBean> roles;
@@ -130,7 +132,7 @@ public class UserBean extends BaseBean {
 		this.roles = roles;
 	}
 
-	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+	@OneToOne(optional=true, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     @JoinColumn(name="billing_address_id", unique=false, nullable=true, updatable=true)	
 	public AddressBean getBillingAddress() {
 		return billingAddress;
@@ -140,7 +142,7 @@ public class UserBean extends BaseBean {
 		this.billingAddress = billingAddress;
 	}
 
-	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+	@OneToOne(optional=true, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     @JoinColumn(name="delivery_address_id", unique=false, nullable=true, updatable=true)	
 	public AddressBean getDeliveryAddress() {
 		return deliveryAddress;
@@ -168,7 +170,7 @@ public class UserBean extends BaseBean {
 		this.subscribedForNewsLetterYN = subscribedForNewsLetterYN;
 	}
 
-	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+	@OneToOne(optional=true, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     @JoinColumn(name="user_image_id", unique=true, nullable=true, updatable=true)		
 	public UserImageBean getProfilePicture() {
 		return profilePicture;
