@@ -12,6 +12,12 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.rsinc.webretail.b2c.estore.business.domain.entity.enums.GenderType;
 
@@ -30,14 +36,22 @@ public class PersonBean extends PartyBean {
 	 */
 	private static final long serialVersionUID = 8455323373764150792L;
 
+	//@Size(min=2, max=30) 
 	private String firstName;
 	private String middleName;
+	
+	//@Size(min=2, max=30) 
 	private String lastName;
 	private String homePhoneNumber;
 	private String businessPhoneNumber;
 	private String cellPhoneNumber;
 	private String faxNumber;
+	
+	@NotNull
 	private GenderType gender;
+	
+	//@DateTimeFormat(pattern="dd/MM/yyyy")
+	//@Past @NotNull
 	private Calendar dateOfBirth;
 	
 	public PersonBean() {

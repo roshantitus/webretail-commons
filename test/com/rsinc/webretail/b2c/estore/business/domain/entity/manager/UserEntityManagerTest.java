@@ -24,6 +24,7 @@ import com.rsinc.webretail.b2c.estore.business.domain.entity.LocaleBean;
 import com.rsinc.webretail.b2c.estore.business.domain.entity.PartyBean;
 import com.rsinc.webretail.b2c.estore.business.domain.entity.PersonBean;
 import com.rsinc.webretail.b2c.estore.business.domain.entity.UserBean;
+import com.rsinc.webretail.b2c.estore.business.domain.entity.enums.GenderType;
 import com.rsinc.webretail.b2c.estore.business.domain.entity.enums.UserStatus;
 import com.rsinc.webretail.b2c.estore.business.domain.entity.manager.AddressEntityManager;
 import com.rsinc.webretail.b2c.estore.business.domain.entity.manager.CityEntityManager;
@@ -33,6 +34,7 @@ import com.rsinc.webretail.b2c.estore.business.domain.entity.manager.PartyEntity
 import com.rsinc.webretail.b2c.estore.business.domain.entity.manager.UserEntityManager;
 import com.rsinc.webretail.b2c.estore.common.config.AppConfig;
 import com.rsinc.webretail.b2c.estore.common.exception.application.RecordNotFoundException;
+import com.rsinc.webretail.b2c.estore.common.exception.application.ValidationException;
 import com.rsinc.webretail.b2c.estore.common.exception.system.RetrievalFailureSystemException;
 import com.rsinc.webretail.b2c.estore.common.logging.Logger;
 import com.rsinc.webretail.b2c.estore.common.logging.LoggerFactory;
@@ -85,6 +87,23 @@ public class UserEntityManagerTest {
 	
 	@Inject
 	private CurrencyEntityManager currencyEntityManager;	
+	
+	@Test
+	@Transactional
+	public void testForSeededValues() {
+
+		try {
+			UserBean user = userEntityManager.loadById(CommonConstants.SYSTEM_USER);
+			assertNotNull(user);
+			assertNotNull(user.getAuthentication());
+			assertNotNull(user.getParty());
+			
+		} catch (RetrievalFailureSystemException | RecordNotFoundException
+				| ValidationException e) {
+			e.printStackTrace();
+			fail(e.getMessage());
+		}
+	}
 	
 	@Test
 	//Execute method without transaction
@@ -439,9 +458,10 @@ public class UserEntityManagerTest {
 		userBean.setStatus(UserStatus.NEW);
 		setLocale(userBean);
 		setCurrency(userBean);
-		PartyBean party = new PersonBean();
+		PersonBean party = new PersonBean();
 		party.setName(PERSON_NAME);
 		party.setEmail(PARTY_EMAIL_ID);
+		party.setGender(GenderType.MALE);
 		AddressBean partyAddress = new AddressBean();
 		partyAddress.setAddressLine1(PERSON_ADDRESS_LINE1);
 		partyAddress.setAddressLine2(PERSON_ADDRESS_LINE2);
@@ -505,9 +525,10 @@ public class UserEntityManagerTest {
 		userBean.setStatus(UserStatus.NEW);
 		setLocale(userBean);
 		setCurrency(userBean);
-		PartyBean party = new PersonBean();
+		PersonBean party = new PersonBean();
 		party.setName(PERSON_NAME);
-		party.setEmail(PERSON_EMAIL_ID);		
+		party.setEmail(PERSON_EMAIL_ID);	
+		party.setGender(GenderType.MALE);
 		userBean.setParty(party);
 		return userBean;
 	}
