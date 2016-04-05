@@ -27,7 +27,7 @@ import com.rsinc.webretail.b2c.estore.common.email.MailSender;
  */
 @Configuration
 @Import(DataConfig.class)
-@ComponentScan({ "com.rsinc.webretail.b2c.estore.data.entity.manager", "com.rsinc.webretail.b2c.estore.common.logging" })
+@ComponentScan({ "com.rsinc.webretail.b2c.estore.business.domain.entity.manager", "com.rsinc.webretail.b2c.estore.common.logging" })
 @PropertySource({ "classpath:/mail-config.properties" })
 public class AppConfig {
 

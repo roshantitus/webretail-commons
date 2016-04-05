@@ -17,11 +17,11 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.rsinc.webretail.b2c.estore.business.domain.entity.LocaleBean;
 import com.rsinc.webretail.b2c.estore.common.config.AppConfig;
 import com.rsinc.webretail.b2c.estore.common.exception.application.RecordNotFoundException;
 import com.rsinc.webretail.b2c.estore.common.logging.Logger;
 import com.rsinc.webretail.b2c.estore.common.logging.LoggerFactory;
-import com.rsinc.webretail.b2c.estore.data.entity.LocaleBean;
 
 /**
  * @author Roshan Titus

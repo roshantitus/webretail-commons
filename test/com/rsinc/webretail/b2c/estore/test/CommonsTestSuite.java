@@ -6,18 +6,18 @@ package com.rsinc.webretail.b2c.estore.test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
+import com.rsinc.webretail.b2c.estore.business.domain.entity.manager.BankEntityManagerTest;
+import com.rsinc.webretail.b2c.estore.business.domain.entity.manager.CategoryEntityManagerTest;
+import com.rsinc.webretail.b2c.estore.business.domain.entity.manager.CityEntityManagerTest;
+import com.rsinc.webretail.b2c.estore.business.domain.entity.manager.CountryEntityManagerTest;
+import com.rsinc.webretail.b2c.estore.business.domain.entity.manager.CurrencyEntityManagerTest;
+import com.rsinc.webretail.b2c.estore.business.domain.entity.manager.LocaleEntityManagerTest;
+import com.rsinc.webretail.b2c.estore.business.domain.entity.manager.PaymentGatewayEntityManagerTest;
+import com.rsinc.webretail.b2c.estore.business.domain.entity.manager.ShippingCompanyEntityManagerTest;
+import com.rsinc.webretail.b2c.estore.business.domain.entity.manager.StateEntityManagerTest;
+import com.rsinc.webretail.b2c.estore.business.domain.entity.manager.UserEntityManagerTest;
 import com.rsinc.webretail.b2c.estore.common.email.MailManagerTest;
 import com.rsinc.webretail.b2c.estore.data.dao.PersistanceDaoTest;
-import com.rsinc.webretail.b2c.estore.data.entity.manager.BankEntityManagerTest;
-import com.rsinc.webretail.b2c.estore.data.entity.manager.CategoryEntityManagerTest;
-import com.rsinc.webretail.b2c.estore.data.entity.manager.CityEntityManagerTest;
-import com.rsinc.webretail.b2c.estore.data.entity.manager.CountryEntityManagerTest;
-import com.rsinc.webretail.b2c.estore.data.entity.manager.CurrencyEntityManagerTest;
-import com.rsinc.webretail.b2c.estore.data.entity.manager.LocaleEntityManagerTest;
-import com.rsinc.webretail.b2c.estore.data.entity.manager.PaymentGatewayEntityManagerTest;
-import com.rsinc.webretail.b2c.estore.data.entity.manager.ShippingCompanyEntityManagerTest;
-import com.rsinc.webretail.b2c.estore.data.entity.manager.StateEntityManagerTest;
-import com.rsinc.webretail.b2c.estore.data.entity.manager.UserEntityManagerTest;
 
 /**
  * @author Roshan Titus

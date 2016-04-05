@@ -4,8 +4,8 @@ package com.rsinc.webretail.b2c.estore.common.logging;
 
 import java.io.Serializable;
 
+import com.rsinc.webretail.b2c.estore.business.domain.entity.UserBean;
 import com.rsinc.webretail.b2c.estore.common.util.SecurityContextUtils;
-import com.rsinc.webretail.b2c.estore.data.entity.UserBean;
 
 /**
  * 

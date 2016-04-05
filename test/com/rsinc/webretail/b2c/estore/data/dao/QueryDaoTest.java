@@ -19,15 +19,15 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.rsinc.webretail.b2c.estore.business.domain.entity.PartyBean;
+import com.rsinc.webretail.b2c.estore.business.domain.entity.PersonBean;
+import com.rsinc.webretail.b2c.estore.business.domain.entity.UserBean;
+import com.rsinc.webretail.b2c.estore.business.domain.entity.enums.UserStatus;
 import com.rsinc.webretail.b2c.estore.common.config.AppConfig;
 import com.rsinc.webretail.b2c.estore.common.logging.Logger;
 import com.rsinc.webretail.b2c.estore.common.logging.LoggerFactory;
 import com.rsinc.webretail.b2c.estore.common.util.CommonConstants;
 import com.rsinc.webretail.b2c.estore.common.util.SecurityContextUtils;
-import com.rsinc.webretail.b2c.estore.data.entity.PartyBean;
-import com.rsinc.webretail.b2c.estore.data.entity.PersonBean;
-import com.rsinc.webretail.b2c.estore.data.entity.UserBean;
-import com.rsinc.webretail.b2c.estore.data.entity.enums.UserStatus;
 
 /**
  * @author Roshan Titus

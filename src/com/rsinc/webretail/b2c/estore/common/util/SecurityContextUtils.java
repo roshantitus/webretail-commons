@@ -3,7 +3,7 @@
  */
 package com.rsinc.webretail.b2c.estore.common.util;
 
-import com.rsinc.webretail.b2c.estore.data.entity.UserBean;
+import com.rsinc.webretail.b2c.estore.business.domain.entity.UserBean;
 
 /**
  * @author Roshan Titus
