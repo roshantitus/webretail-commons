@@ -54,7 +54,7 @@ public class CurrencyBean extends BaseBean {
 		this.id = id;
 	}
 	
-	@Column(name = "currency_code", unique=true)
+	@Column(name = "currency_code", unique=true, nullable=false)
 	public String getCurrencyCode() {
 		return currencyCode;
 	}

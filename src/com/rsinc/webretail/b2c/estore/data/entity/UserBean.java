@@ -17,11 +17,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotEmpty;
 
 import com.rsinc.webretail.b2c.estore.data.entity.enums.UserStatus;
 
@@ -50,10 +49,10 @@ public class UserBean extends BaseBean {
 	@NotNull
 	private UserStatus status;
 	
-	@NotNull
+	//@NotNull
 	private LocaleBean locale;
 	
-	@NotNull
+	//@NotNull
 	private CurrencyBean currency;
 	
 	private List<RoleBean> roles;
@@ -61,7 +60,7 @@ public class UserBean extends BaseBean {
 	private AddressBean deliveryAddress;
 	private Integer rewardPoints;
 	private Boolean subscribedForNewsLetterYN;
-	
+	private List<UserPreferenceBean> userPreferences;
 	private UserImageBean profilePicture;
 	
 	public UserBean() {
@@ -109,8 +108,8 @@ public class UserBean extends BaseBean {
 		this.status = status;
 	}
 
-	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="locale_code", unique=false, nullable=false, updatable=true)
+	@OneToOne(optional=true, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="locale_id", unique=false, nullable=true, updatable=true)
 	public LocaleBean getLocale() {
 		return locale;
 	}
@@ -180,8 +179,8 @@ public class UserBean extends BaseBean {
 		this.profilePicture = profilePicture;
 	}
 
-	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="currency_code", unique=false, nullable=true, updatable=true)	
+	@OneToOne(optional=true, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="currency_id", unique=false, nullable=true, updatable=true)	
 	public CurrencyBean getCurrency() {
 		return currency;
 	}
@@ -190,4 +189,14 @@ public class UserBean extends BaseBean {
 		this.currency = currency;
 	}
 
+	@OneToMany(mappedBy="user", fetch = FetchType.EAGER)	
+	public List<UserPreferenceBean> getUserPreferences() {
+		return userPreferences;
+	}
+
+	public void setUserPreferences(List<UserPreferenceBean> userPreferences) {
+		this.userPreferences = userPreferences;
+	}
+
+	
 }

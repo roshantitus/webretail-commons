@@ -73,7 +73,7 @@ public abstract class PartyBean extends BaseBean {
 	}	
 	
 
-	@Column(name = "email", unique=true)
+	@Column(name = "email", unique=true, nullable=false)
 	public String getEmail() {
 		return email;
 	}

@@ -13,6 +13,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,7 +24,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Access(AccessType.PROPERTY)
-//@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
+@NamedQueries({@NamedQuery(name="findCountryByUK", query="from CountryBean countryBean where countryBean.countryCode = :countryCode"), })
 @Table(name="country_master")
 public class CountryBean extends BaseBean {
 
@@ -53,7 +55,7 @@ public class CountryBean extends BaseBean {
 		this.id = id;
 	}
 
-	@Column(name = "country_code", unique=true)
+	@Column(name = "country_code", unique=true, nullable=false)
 	public String getCountryCode() {
 		return countryCode;
 	}

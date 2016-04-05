@@ -66,7 +66,7 @@ public class AuthenticationBean extends BaseBean {
 		this.user = user;
 	}
 	
-	@Column(name = "username", unique=true)
+	@Column(name = "username", unique=true, nullable=false)
 	public String getUsername() {
 		return username;
 	}

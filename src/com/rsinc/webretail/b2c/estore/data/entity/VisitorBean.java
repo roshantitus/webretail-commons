@@ -53,7 +53,7 @@ public class VisitorBean extends BaseBean{
 		this.id = id;
 	}		
 	
-	@Column(name = "input_device_ip_address", unique=true)
+	@Column(name = "input_device_ip_address", unique=true, nullable=false)
 	public String getInputDeviceIpAddress()
 	{
 		return inputDeviceIpAddress;

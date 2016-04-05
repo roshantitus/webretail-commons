@@ -47,8 +47,7 @@ public class UserImageBean extends ImageBean {
 		this.id = id;
 	}	
 
-	@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id", unique=true, nullable=false, updatable=true)	
+	@OneToOne(mappedBy="profilePicture", fetch = FetchType.LAZY)		
 	public UserBean getUser() {
 		return user;
 	}

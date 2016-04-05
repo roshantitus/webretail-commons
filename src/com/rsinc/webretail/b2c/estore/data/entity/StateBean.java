@@ -15,6 +15,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,7 +26,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Access(AccessType.PROPERTY)
-//@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
+@NamedQueries({@NamedQuery(name="findStateByUK", query="from StateBean stateBean where stateBean.stateCode = :stateCode"), })
 @Table(name="state_master")
 public class StateBean extends BaseBean {
 
@@ -64,7 +66,7 @@ public class StateBean extends BaseBean {
 		this.country = country;
 	}
 
-	@Column(name = "state_code", unique=true)
+	@Column(name = "state_code", unique=true, nullable=false)
 	public String getStateCode() {
 		return stateCode;
 	}

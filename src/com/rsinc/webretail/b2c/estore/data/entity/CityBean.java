@@ -83,7 +83,7 @@ public class CityBean extends BaseBean {
 		this.description = description;
 	}
 
-	@Column(name = "city_code", unique=true)
+	@Column(name = "city_code", unique=true, nullable=false)
 	public String getCityCode() {
 		return cityCode;
 	}

@@ -55,6 +55,7 @@ public class AddressBean extends BaseBean {
 	private CountryBean country;
 	
 	private String websiteURL;
+	private String email;
 	private String homePhone;
 	private String officePhone;
 	private String mobileNo;
@@ -108,8 +109,8 @@ public class AddressBean extends BaseBean {
 		this.landmark = landmark;
 	}
 
-	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="city_code", unique=false, nullable=false, updatable=true)		
+	@OneToOne(optional=true, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="city_id")		
 	public CityBean getCity() {
 		return city;
 	}
@@ -137,8 +138,8 @@ public class AddressBean extends BaseBean {
 		this.zipCode = zipCode;
 	}
 
-	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="state_code", unique=false, nullable=false, updatable=true)		
+	@OneToOne(optional=true, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="state_id")		
 	public StateBean getState() {
 		return state;
 	}
@@ -148,8 +149,8 @@ public class AddressBean extends BaseBean {
 		this.state = state;
 	}
 
-	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="country_code", unique=false, nullable=false, updatable=true)			
+	@OneToOne(optional=true, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="country_id")			
 	public CountryBean getCountry() {
 		return country;
 	}
@@ -197,6 +198,16 @@ public class AddressBean extends BaseBean {
 
 	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
+	}
+
+	@Column(name = "email")
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
 	}	
 
 	

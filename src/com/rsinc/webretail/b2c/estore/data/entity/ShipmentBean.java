@@ -130,7 +130,7 @@ public class ShipmentBean extends BaseBean {
 	}
 
 	@OneToOne(optional=false, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    @JoinColumn(name="invoice_id", unique=true, nullable=true, updatable=true)		
+    @JoinColumn(name="invoice_id", unique=true, nullable=false, updatable=true)		
 	public InvoiceBean getInvoice() {
 		return invoice;
 	}

@@ -48,7 +48,7 @@ public class UserEntityManagerTest {
 	/**
 	 * 
 	 */
-	private static final String PARTY_EMAIL_ID = "roshantitus@gmail.com";
+	private static final String PARTY_EMAIL_ID = "roshantitus@hotmail.com";
 	private static final String PARTY_EMAIL_ID_NEW = "r6titus@gmail.com";
 	private static final String PERSON_EMAIL_ID = "roshantitus@yahoo.com";
 	private static final String PERSON_EMAIL_ID_NEW = "r6titus@redffmail.com";	
@@ -171,7 +171,8 @@ public class UserEntityManagerTest {
 	@Transactional
 	public void testFindAllUsers()
 	{
-		try {
+		try {			
+			
 			UserBean userBeanFromDB1 = userEntityManager.loadById((userEntityManager.create(getUser())).getUserId());
 			assertNotNull(userBeanFromDB1);
 			assertNotNull(userBeanFromDB1.getUserId());
@@ -180,14 +181,14 @@ public class UserEntityManagerTest {
 			assertNotNull(userBeanFromDB1.getParty().getPartyAddress());
 			assertNotNull(userBeanFromDB1.getParty().getPartyAddress().getAddressId());	
 			
-			UserBean userBeanFromDB2 = userEntityManager.loadById((userEntityManager.create(getUserWithoutPartyAddress())).getUserId());
-			assertNotNull(userBeanFromDB2);
-			assertNotNull(userBeanFromDB2.getUserId());
-			assertNotNull(userBeanFromDB2.getParty());
-			assertNotNull(userBeanFromDB2.getParty().getPartyId());
+//			UserBean userBeanFromDB2 = userEntityManager.loadById((userEntityManager.create(getUserWithoutPartyAddress())).getUserId());
+//			assertNotNull(userBeanFromDB2);
+//			assertNotNull(userBeanFromDB2.getUserId());
+//			assertNotNull(userBeanFromDB2.getParty());
+//			assertNotNull(userBeanFromDB2.getParty().getPartyId());
 			
-			List<UserBean> userBeanList = userEntityManager.findAll();
-			assertEquals(userBeanList.size(), 2);
+			List<UserBean> userBeanListAfterCreate = userEntityManager.findAll();
+			assertEquals(userBeanListAfterCreate.size(), 2);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

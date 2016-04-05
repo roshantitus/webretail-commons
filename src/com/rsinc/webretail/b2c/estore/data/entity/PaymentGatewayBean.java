@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Access(AccessType.PROPERTY)
 //@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
-@Table(name="payment_gateway")
+@Table(name="payment_gateway_master")
 public class PaymentGatewayBean extends VenderBean {
 
 	/**

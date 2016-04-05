@@ -49,7 +49,7 @@ public class LocaleBean extends BaseBean {
 		this.id = id;
 	}
 
-	@Column(name = "locale_code", unique=true)
+	@Column(name = "locale_code", unique=true, nullable=false)
 	public String getLocaleCode() {
 		return localeCode;
 	}

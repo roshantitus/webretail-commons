@@ -47,7 +47,7 @@ public class UserPreferenceBean extends PreferenceBean {
 		this.id = id;
 	}	
 	
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id", unique=false, nullable=false, updatable=true)	
 	public UserBean getUser() {
 		return user;
