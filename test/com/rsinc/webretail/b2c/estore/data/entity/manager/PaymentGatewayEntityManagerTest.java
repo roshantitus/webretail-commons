@@ -18,9 +18,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.rsinc.webretail.b2c.estore.common.config.AppConfig;
-import com.rsinc.webretail.b2c.estore.common.util.CommonConstants;
-import com.rsinc.webretail.b2c.estore.data.entity.CityBean;
-import com.rsinc.webretail.b2c.estore.data.entity.CountryBean;
+import com.rsinc.webretail.b2c.estore.data.entity.PaymentGatewayBean;
 
 /**
  * @author Roshan Titus
@@ -28,12 +26,10 @@ import com.rsinc.webretail.b2c.estore.data.entity.CountryBean;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes={AppConfig.class})
-public class CityEntityManagerTest {
-
-	private static final String CITY_CODE = "THIRUVANANTHAPURAM";
+public class PaymentGatewayEntityManagerTest {
 	
 	@Inject
-	private CityEntityManager cityEntityManager;
+	private PaymentGatewayEntityManager paymentGatewayEntityManager;
 	
 	@Test
 	@Transactional
@@ -41,24 +37,9 @@ public class CityEntityManagerTest {
 
 		try {
 			
-			List<CityBean> cities = cityEntityManager.findAll();
-			assertNotNull(cities);
-			assertTrue(cities.size() > 0);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail(e.getMessage());
-		}
-	}
-	
-	@Test
-	@Transactional
-	public void testFindByCityCode() {
-
-		try {
-			
-			CityBean cityBean = cityEntityManager.findByCityCode(CITY_CODE);
-			assertNotNull(cityBean);
+			List<PaymentGatewayBean> paymentGateways = paymentGatewayEntityManager.findAll();
+			assertNotNull(paymentGateways);
+			assertTrue(paymentGateways.size() > 0);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -56,8 +56,7 @@ public class StateEntityManagerImpl extends BaseEntityManagerImpl<StateBean>
 	 */
 	@Override
 	public List<StateBean> findAll() throws RetrievalFailureSystemException {
-		// TODO implement method functionality
-		return null;
+		return getPersistanceDao().findAll(StateBean.class);
 	}
 
 	/* (non-Javadoc)

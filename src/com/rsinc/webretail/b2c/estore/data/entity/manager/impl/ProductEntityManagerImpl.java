@@ -11,13 +11,11 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Component;
 
-import com.rsinc.webretail.b2c.estore.common.exception.application.RecordAlreadyExistsException;
 import com.rsinc.webretail.b2c.estore.common.exception.application.RecordNotFoundException;
 import com.rsinc.webretail.b2c.estore.common.exception.application.ValidationException;
 import com.rsinc.webretail.b2c.estore.common.exception.system.PersistanceFailureSystemException;
 import com.rsinc.webretail.b2c.estore.common.exception.system.RetrievalFailureSystemException;
 import com.rsinc.webretail.b2c.estore.common.paging.ResultLoadCriteria;
-import com.rsinc.webretail.b2c.estore.data.entity.CategoryBean;
 import com.rsinc.webretail.b2c.estore.data.entity.ProductBean;
 import com.rsinc.webretail.b2c.estore.data.entity.manager.CategoryEntityManager;
 import com.rsinc.webretail.b2c.estore.data.entity.manager.ProductEntityManager;

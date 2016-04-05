@@ -56,8 +56,7 @@ public class CurrencyEntityManagerImpl extends BaseEntityManagerImpl<CurrencyBea
 	 */
 	@Override
 	public List<CurrencyBean> findAll() throws RetrievalFailureSystemException {
-		// TODO implement method functionality
-		return null;
+		return getPersistanceDao().findAll(CurrencyBean.class);
 	}
 
 	/* (non-Javadoc)

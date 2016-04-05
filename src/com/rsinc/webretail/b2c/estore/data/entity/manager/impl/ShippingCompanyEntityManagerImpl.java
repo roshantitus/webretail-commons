@@ -3,25 +3,20 @@
  */
 package com.rsinc.webretail.b2c.estore.data.entity.manager.impl;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
-import com.rsinc.webretail.b2c.estore.common.exception.application.RecordAlreadyExistsException;
 import com.rsinc.webretail.b2c.estore.common.exception.application.RecordNotFoundException;
 import com.rsinc.webretail.b2c.estore.common.exception.application.ValidationException;
 import com.rsinc.webretail.b2c.estore.common.exception.system.PersistanceFailureSystemException;
 import com.rsinc.webretail.b2c.estore.common.exception.system.RetrievalFailureSystemException;
 import com.rsinc.webretail.b2c.estore.common.paging.ResultLoadCriteria;
-import com.rsinc.webretail.b2c.estore.data.entity.CityBean;
-import com.rsinc.webretail.b2c.estore.data.entity.LocaleBean;
-import com.rsinc.webretail.b2c.estore.data.entity.manager.CityEntityManager;
+import com.rsinc.webretail.b2c.estore.data.entity.ShippingCompanyBean;
+import com.rsinc.webretail.b2c.estore.data.entity.manager.ShippingCompanyEntityManager;
 
 /**
  * @author Roshan Titus
@@ -29,9 +24,9 @@ import com.rsinc.webretail.b2c.estore.data.entity.manager.CityEntityManager;
  */
 @Component
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
-public class CityEntityManagerImpl extends BaseEntityManagerImpl<CityBean> implements
-		CityEntityManager {
-
+public class ShippingCompanyEntityManagerImpl extends
+		BaseEntityManagerImpl<ShippingCompanyBean> implements
+		ShippingCompanyEntityManager {
 
 	/* (non-Javadoc)
 	 * @see com.rsinc.webretail.b2c.estore.data.entity.manager.impl.BaseEntityManagerImpl#deleteById(java.lang.Object)
@@ -47,8 +42,9 @@ public class CityEntityManagerImpl extends BaseEntityManagerImpl<CityBean> imple
 	 * @see com.rsinc.webretail.b2c.estore.data.entity.manager.impl.BaseEntityManagerImpl#loadById(java.lang.Object)
 	 */
 	@Override
-	public CityBean loadById(Object id) throws RetrievalFailureSystemException,
-			RecordNotFoundException, ValidationException {
+	public ShippingCompanyBean loadById(Object id)
+			throws RetrievalFailureSystemException, RecordNotFoundException,
+			ValidationException {
 		// TODO implement method functionality
 		return null;
 	}
@@ -57,15 +53,18 @@ public class CityEntityManagerImpl extends BaseEntityManagerImpl<CityBean> imple
 	 * @see com.rsinc.webretail.b2c.estore.data.entity.manager.impl.BaseEntityManagerImpl#findAll()
 	 */
 	@Override
-	public List<CityBean> findAll() throws RetrievalFailureSystemException {
-		return getPersistanceDao().findAll(CityBean.class);
+	public List<ShippingCompanyBean> findAll()
+			throws RetrievalFailureSystemException {
+		
+		return getPersistanceDao().findAll(ShippingCompanyBean.class);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.rsinc.webretail.b2c.estore.data.entity.manager.impl.BaseEntityManagerImpl#findAll(com.rsinc.webretail.b2c.estore.common.paging.ResultLoadCriteria)
 	 */
 	@Override
-	public List<CityBean> findAll(ResultLoadCriteria resultLoadCriteria)
+	public List<ShippingCompanyBean> findAll(
+			ResultLoadCriteria resultLoadCriteria)
 			throws RetrievalFailureSystemException {
 		// TODO implement method functionality
 		return null;
@@ -88,18 +87,6 @@ public class CityEntityManagerImpl extends BaseEntityManagerImpl<CityBean> imple
 			throws RetrievalFailureSystemException {
 		// TODO implement method functionality
 		return null;
-	}
-
-
-	/* (non-Javadoc)
-	 * @see com.rsinc.webretail.b2c.estore.data.entity.manager.CityEntityManager#findByCityCode(java.lang.String)
-	 */
-	@Override
-	public CityBean findByCityCode(String cityCde)
-			throws RetrievalFailureSystemException {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("cityCode", cityCde);
-		return findByUK(CityBean.class, "findCityByUK", params);
 	}
 
 }

@@ -4,7 +4,10 @@
 package com.rsinc.webretail.b2c.estore.data.entity.manager;
 
 import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertTrue;
 import static junit.framework.Assert.fail;
+
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -17,6 +20,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.rsinc.webretail.b2c.estore.common.config.AppConfig;
 import com.rsinc.webretail.b2c.estore.common.util.CommonConstants;
 import com.rsinc.webretail.b2c.estore.data.entity.CurrencyBean;
+import com.rsinc.webretail.b2c.estore.data.entity.LocaleBean;
 
 /**
  * @author Roshan Titus
@@ -30,6 +34,22 @@ public class CurrencyEntityManagerTest {
 	
 	@Inject
 	private CurrencyEntityManager currencyEntityManager;
+	
+	@Test
+	@Transactional
+	public void testForSeededValues() {
+
+		try {
+			
+			List<CurrencyBean> currencies = currencyEntityManager.findAll();
+			assertNotNull(currencies);
+			assertTrue(currencies.size() > 0);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail(e.getMessage());
+		}
+	}
 	
 	@Test
 	@Transactional

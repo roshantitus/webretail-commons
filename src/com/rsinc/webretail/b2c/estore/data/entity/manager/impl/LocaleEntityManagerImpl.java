@@ -97,8 +97,7 @@ public class LocaleEntityManagerImpl extends BaseEntityManagerImpl<LocaleBean> i
 	 */
 	@Override
 	public List<LocaleBean> findAll() throws RetrievalFailureSystemException {
-		// TODO implement method functionality
-		return null;
+		return getPersistanceDao().findAll(LocaleBean.class);
 	}
 
 	/* (non-Javadoc)

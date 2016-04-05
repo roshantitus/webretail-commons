@@ -24,7 +24,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Access(AccessType.PROPERTY)
 //@NamedQueries({@NamedQuery(name="findByUsername", query=""), })
-@Table(name="role")
+@Table(name="role_master")
 public class RoleBean extends BaseBean {
 
 	/**
@@ -57,7 +57,7 @@ public class RoleBean extends BaseBean {
 		this.id = id;
 	}	
 
-	@Column(name = "role_code")
+	@Column(name = "role_code", unique=true, nullable=false)
 	public String getRoleCode() {
 		return roleCode;
 	}

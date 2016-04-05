@@ -56,8 +56,7 @@ public class CountryEntityManagerImpl extends BaseEntityManagerImpl<CountryBean>
 	 */
 	@Override
 	public List<CountryBean> findAll() throws RetrievalFailureSystemException {
-		// TODO implement method functionality
-		return null;
+		return getPersistanceDao().findAll(CountryBean.class);
 	}
 
 	/* (non-Javadoc)

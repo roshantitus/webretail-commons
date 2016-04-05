@@ -1534,9 +1534,8 @@ insert currency_master (`currency_id`,`currency_code`,`currency_symbol`,`name`,`
 
 
 /*Seed data for table `role` */
-  
-insert role (`role_id`, `role_code`, `role_name`, `role_description`, `created_by`, `updated_by`, `created_date`, `deleted_yn`,`record_version_no`,`updated_date`) values (1, 'ADMINISTRATOR', 'System Administrator', null, -99, -99, NOW(), 0, 0, NOW());
-insert role (`role_id`, `role_code`, `role_name`, `role_description`, `created_by`, `updated_by`, `created_date`, `deleted_yn`,`record_version_no`,`updated_date`) values (2, 'CUSTOMER', 'Customer', null, -99, -99, NOW(), 0, 0, NOW());
+insert role_master (`role_id`, `role_code`, `role_name`, `role_description`, `created_by`, `updated_by`, `created_date`, `deleted_yn`,`record_version_no`,`updated_date`) values (1, 'ADMINISTRATOR', 'System Administrator', null, -99, -99, NOW(), 0, 0, NOW());
+insert role_master (`role_id`, `role_code`, `role_name`, `role_description`, `created_by`, `updated_by`, `created_date`, `deleted_yn`,`record_version_no`,`updated_date`) values (2, 'CUSTOMER', 'Customer', null, -99, -99, NOW(), 0, 0, NOW());
 
 
 /*Seed data for table `locale_master` */
@@ -1547,14 +1546,13 @@ insert locale_master (`locale_id`, `locale_code`, `language_code`, `country_code
 /*Seed data for table `address` */
 insert `address` (  `address_id`,  `created_date`,  `deleted_yn`,  `record_version_no`,  `updated_date`,  `address_line1`,  `address_line2`,  `landmark`, `home_phone`, `mobile_no`,  `office_phone`,  `website_url`, `city_id`,  `country_id`,  `state_id`, `zip_code`, `email`,  `created_by`,  `updated_by`) values (1, NOW(), 0, 0, NOW(), 'LEELA PLAZA, IDIUMVILAKATHUVEEDU', 'ULOOR, KOCHULOOR', null, null, null, '0471-2556955', 'http://www.bluedart.com', 685, 1, 18, '695011', null, -99, -99);
 insert `address` (  `address_id`,  `created_date`,  `deleted_yn`,  `record_version_no`,  `updated_date`,  `address_line1`,  `address_line2`,  `landmark`, `home_phone`, `mobile_no`,  `office_phone`,  `website_url`, `city_id`,  `country_id`,  `state_id`, `zip_code`, `email`,  `created_by`,  `updated_by`) values (2, NOW(), 0, 0, NOW(), '3rd & 4th floor, Maa Grace', '12, 7th Cross Road, Koramangala 1A Block', null, null, null, '0471-2556955', 'https://www.instamojo.com/', 549, 1, 15, '560034', null, -99, -99);
-
+insert `address` (  `address_id`,  `created_date`,  `deleted_yn`,  `record_version_no`,  `updated_date`,  `address_line1`,  `address_line2`,  `landmark`, `home_phone`, `mobile_no`,  `office_phone`,  `website_url`, `city_id`,  `country_id`,  `state_id`, `zip_code`, `email`,  `created_by`,  `updated_by`) values (3, NOW(), 0, 0, NOW(), 'Kariavattom, Padmanabham Club House Road', 'Technopark, Thiruvananthapuram', null, null, null, '0471-2556955', 'http://www.hdfcbank.com/', 685, 1, 18, '695581', null, -99, -99);
 
 /*Seed data for table `shipping_company_master` */
-
 insert `shipping_company_master` (  `shipping_company_id`,  `created_date`,  `deleted_yn`,  `record_version_no`,  `updated_date`,  `contact_person_name`,  `name`,  `tracker_url`,  `created_by`,  `updated_by`,  `address_id`) values (1, NOW(), 0, 0, NOW(), null, 'BLUE DART EXPRESS LTD', 'http://www.bluedart.com/maintracking.html', -99, -99, 1);
   
 /*Seed data for table `bank_master` */
-
+insert `bank_master` (  `bank_id`,  `created_date`,  `deleted_yn`,  `record_version_no`,  `updated_date`,  `contact_person_name`,  `name`,  `net_banking_url`,  `created_by`,  `updated_by`,  `address_id`) values (1, NOW(), 0, 0, NOW(), null, 'HDFC Bank LTD', 'https://netbanking.hdfcbank.com/netbanking/', -99, -99, 3);
 
 /*Seed data for table `payment_gateway_master` */
 insert `payment_gateway_master` (  `payment_gateway_id`,  `created_date`,  `deleted_yn`,  `record_version_no`,  `updated_date`,  `contact_person_name`,  `name`,  `integration_url`,  `created_by`,  `updated_by`,  `address_id`)values (1, NOW(), 0, 0, NOW(), null, 'InstaMojo Payment Gateway', 'https://www.instamojo.com/', -99, -99, 2);
