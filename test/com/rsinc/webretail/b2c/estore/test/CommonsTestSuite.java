@@ -13,6 +13,7 @@ import com.rsinc.webretail.b2c.estore.business.domain.entity.manager.CountryEnti
 import com.rsinc.webretail.b2c.estore.business.domain.entity.manager.CurrencyEntityManagerTest;
 import com.rsinc.webretail.b2c.estore.business.domain.entity.manager.LocaleEntityManagerTest;
 import com.rsinc.webretail.b2c.estore.business.domain.entity.manager.PaymentGatewayEntityManagerTest;
+import com.rsinc.webretail.b2c.estore.business.domain.entity.manager.RoleEntityManagerTest;
 import com.rsinc.webretail.b2c.estore.business.domain.entity.manager.ShippingCompanyEntityManagerTest;
 import com.rsinc.webretail.b2c.estore.business.domain.entity.manager.StateEntityManagerTest;
 import com.rsinc.webretail.b2c.estore.business.domain.entity.manager.UserEntityManagerTest;
@@ -37,6 +38,7 @@ import com.rsinc.webretail.b2c.estore.data.dao.PersistanceDaoTest;
 	ShippingCompanyEntityManagerTest.class,
 	PaymentGatewayEntityManagerTest.class,
 	BankEntityManagerTest.class,
+	RoleEntityManagerTest.class,
 	MailManagerTest.class
 })
 public class CommonsTestSuite {

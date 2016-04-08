@@ -23,6 +23,7 @@ import com.rsinc.webretail.b2c.estore.business.domain.entity.CurrencyBean;
 import com.rsinc.webretail.b2c.estore.business.domain.entity.LocaleBean;
 import com.rsinc.webretail.b2c.estore.business.domain.entity.PartyBean;
 import com.rsinc.webretail.b2c.estore.business.domain.entity.PersonBean;
+import com.rsinc.webretail.b2c.estore.business.domain.entity.RoleBean;
 import com.rsinc.webretail.b2c.estore.business.domain.entity.UserBean;
 import com.rsinc.webretail.b2c.estore.business.domain.entity.enums.GenderType;
 import com.rsinc.webretail.b2c.estore.business.domain.entity.enums.UserStatus;
@@ -88,6 +89,9 @@ public class UserEntityManagerTest {
 	@Inject
 	private CurrencyEntityManager currencyEntityManager;	
 	
+	@Inject
+	private RoleEntityManager roleEntityManager;	
+	
 	@Test
 	@Transactional
 	public void testForSeededValues() {
@@ -97,6 +101,8 @@ public class UserEntityManagerTest {
 			assertNotNull(user);
 			assertNotNull(user.getAuthentication());
 			assertNotNull(user.getParty());
+			assertNotNull(user.getUserPreferences());
+			assertTrue(user.getUserPreferences().size() > 0);
 			
 		} catch (RetrievalFailureSystemException | RecordNotFoundException
 				| ValidationException e) {
@@ -456,6 +462,7 @@ public class UserEntityManagerTest {
 		authentication.setPassword(PASSWORD);
 		userBean.setAuthentication(authentication);
 		userBean.setStatus(UserStatus.NEW);
+		setRole(userBean);
 		setLocale(userBean);
 		setCurrency(userBean);
 		PersonBean party = new PersonBean();
@@ -471,6 +478,22 @@ public class UserEntityManagerTest {
 		party.setPartyAddress(partyAddress);
 		userBean.setParty(party);
 		return userBean;
+	}
+
+	/**
+	 * @param userBean
+	 */
+	private void setRole(UserBean userBean) {
+		
+		RoleBean role = null;
+		try {
+			role = roleEntityManager.findByRoleCode(CommonConstants.ROLE_ADMINISTRATOR);
+		} catch (RetrievalFailureSystemException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		userBean.setRole(role);
+		
 	}
 
 	/**
@@ -523,6 +546,7 @@ public class UserEntityManagerTest {
 		authentication.setPassword(PASSWORD);
 		userBean.setAuthentication(authentication);
 		userBean.setStatus(UserStatus.NEW);
+		setRole(userBean);
 		setLocale(userBean);
 		setCurrency(userBean);
 		PersonBean party = new PersonBean();

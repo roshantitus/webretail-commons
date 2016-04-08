@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -55,7 +56,7 @@ public class UserBean extends BaseBean {
 	//@NotNull
 	private CurrencyBean currency;
 	
-	private List<RoleBean> roles;
+	private RoleBean role;
 	private AddressBean billingAddress;
 	private AddressBean deliveryAddress;
 	private Integer rewardPoints;
@@ -116,19 +117,6 @@ public class UserBean extends BaseBean {
 
 	public void setLocale(LocaleBean locale) {
 		this.locale = locale;
-	}
-
-	@ManyToMany
-	@JoinTable(name="user_role",
-	      joinColumns=@JoinColumn(name="user_id", referencedColumnName="user_id"),
-	      inverseJoinColumns=@JoinColumn(name="role_id", referencedColumnName="role_id"))
-	public List<RoleBean> getRoles() {
-		return roles;
-	}
-
-
-	public void setRoles(List<RoleBean> roles) {
-		this.roles = roles;
 	}
 
 	@OneToOne(optional=true, fetch = FetchType.EAGER,cascade=CascadeType.ALL)
@@ -196,6 +184,16 @@ public class UserBean extends BaseBean {
 
 	public void setUserPreferences(List<UserPreferenceBean> userPreferences) {
 		this.userPreferences = userPreferences;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="role_id", unique=false, nullable=false, updatable=true)			
+	public RoleBean getRole() {
+		return role;
+	}
+
+	public void setRole(RoleBean role) {
+		this.role = role;
 	}
 
 	

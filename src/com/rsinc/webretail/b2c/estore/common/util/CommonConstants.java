@@ -23,6 +23,9 @@ public class CommonConstants {
 	public static final String DEFAULT_LOCALE = "en_US";
 	public static final String DEFAULT_CURRENCY = "INR";
 	
+	public static final String ROLE_ADMINISTRATOR = "ADMINISTRATOR";
+	public static final String ROLE_CUSTOMER = "CUSTOMER";
+	
 	public static final Long SYSTEM_USER = new Long(-99);
 	public static final Integer BATCH_SIZE = 0;
 	

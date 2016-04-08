@@ -37,13 +37,13 @@ public abstract class BaseBean implements Serializable{
 	//@NotNull
 	protected UserBean createdBy;
 	
-	@NotNull
+	//@NotNull
 	protected Calendar createdDate;
 	
 	//@NotNull
 	protected UserBean updatedBy;
 	
-	@NotNull
+	//@NotNull
 	protected Calendar updatedDate;
 	
 	

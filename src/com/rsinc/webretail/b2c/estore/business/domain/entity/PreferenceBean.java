@@ -18,6 +18,9 @@ public abstract class PreferenceBean extends BaseBean {
 	 */
 	private static final long serialVersionUID = -3108261538313816904L;
 	
+	private String preferenceDataType;//NUMBER,STRING,DECIMAL
+	private String preferenceType;//TEXT_DISPLAY,RICHTEXT_DISPLAY
+	private String preferenceDescription;
 	private String preferenceName;
 	private String preferenceValue;
 
@@ -44,4 +47,32 @@ public abstract class PreferenceBean extends BaseBean {
 		this.preferenceValue = preferenceValue;
 	}
 
+	@Column(name = "preference_data_type")
+	public String getPreferenceDataType() {
+		return preferenceDataType;
+	}
+
+	public void setPreferenceDataType(String preferenceDataType) {
+		this.preferenceDataType = preferenceDataType;
+	}
+
+	@Column(name = "preference_type")
+	public String getPreferenceType() {
+		return preferenceType;
+	}
+
+	public void setPreferenceType(String preferenceType) {
+		this.preferenceType = preferenceType;
+	}
+
+	@Column(name = "preference_description")
+	public String getPreferenceDescription() {
+		return preferenceDescription;
+	}
+
+	public void setPreferenceDescription(String preferenceDescription) {
+		this.preferenceDescription = preferenceDescription;
+	}
+
+	
 }

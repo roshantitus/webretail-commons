@@ -3,6 +3,8 @@
  */
 package com.rsinc.webretail.b2c.estore.business.domain.entity;
 
+import java.util.Calendar;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
@@ -11,7 +13,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -39,6 +40,8 @@ public class AuthenticationBean extends BaseBean {
 	
 	@NotEmpty
 	private String password;
+	
+	private Calendar passwordExpiryDate;
 	/**
 	 * 
 	 */
@@ -80,6 +83,11 @@ public class AuthenticationBean extends BaseBean {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public void expirePassword()
+	{
+		passwordExpiryDate = Calendar.getInstance();
 	}
 
 }
