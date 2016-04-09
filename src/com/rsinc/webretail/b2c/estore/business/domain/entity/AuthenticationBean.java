@@ -42,6 +42,9 @@ public class AuthenticationBean extends BaseBean {
 	private String password;
 	
 	private Calendar passwordExpiryDate;
+	private Calendar lastPasswordDate;
+	private Integer totalFailedLoginCount;
+	
 	/**
 	 * 
 	 */
@@ -90,4 +93,29 @@ public class AuthenticationBean extends BaseBean {
 		passwordExpiryDate = Calendar.getInstance();
 	}
 
+	public Calendar getPasswordExpiryDate() {
+		return passwordExpiryDate;
+	}
+
+	public void setPasswordExpiryDate(Calendar passwordExpiryDate) {
+		this.passwordExpiryDate = passwordExpiryDate;
+	}
+
+	public Calendar getLastPasswordDate() {
+		return lastPasswordDate;
+	}
+
+	public void setLastPasswordDate(Calendar lastPasswordDate) {
+		this.lastPasswordDate = lastPasswordDate;
+	}
+
+	public Integer getTotalFailedLoginCount() {
+		return totalFailedLoginCount;
+	}
+
+	public void setTotalFailedLoginCount(Integer totalFailedLoginCount) {
+		this.totalFailedLoginCount = totalFailedLoginCount;
+	}
+
+	
 }
